@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { LoginProvider } from './context/ContextLogin';
 import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './context/Auth/AuthProvider';
 
 
 const root = ReactDOM.createRoot(
@@ -13,9 +13,9 @@ root.render(
 
   <React.StrictMode>
     <BrowserRouter>
-      <LoginProvider>
+      <AuthProvider>
         <App />
-      </LoginProvider>
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
