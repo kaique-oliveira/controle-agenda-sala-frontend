@@ -1,7 +1,7 @@
-import { IoAtOutline, IoLockClosed } from "react-icons/io5";
+import { FaEnvelope, FaLock, FaKey } from "react-icons/fa";
 import InputText from '../../components/InputText'
 import Button from "../../components/Button";
-import logo from '../../assets/calendar.gif'
+import logo from '../../assets/calendar.svg'
 import { useState } from "react";
 import { 
   Container, 
@@ -13,7 +13,6 @@ import {
 } from './styles';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-
 
 
 
@@ -30,8 +29,6 @@ function LoginPage() {
 
       if (isLogado) {
         navigate('/home');
-      } else {
-        alert('Não deu certo!');
       }
     }
   }
@@ -41,35 +38,35 @@ function LoginPage() {
     <Container>   
       <ContainerBody>
         <ContainerForm>
-
-        <Imagem src={logo}/>
+          <Imagem src={logo}/>
           <ContainerInputs>
             <InputText
               placheholder="Infome seu e-mail interfocus"
               tipoText="email" 
-              icon={<IoAtOutline size={30} color={'#696969'}/>}
+              icon={<FaEnvelope size={20} color={'#C0C0C0'}/>}
               onChange={e => setEmail(e.target.value)}
             />
             <InputText 
               placheholder="Infome sua senha"
               tipoText="password" 
-              icon={<IoLockClosed size={25} color={'#696969'}/>}
+              icon={<FaLock size={20} color={'#C0C0C0'}/>}
               onChange={s => setSenha(s.target.value)}
             />
           </ContainerInputs>
         
           <ConatainerBotoes>
-            <Button titulo='Entrar' onClick={handleLogin}/>
-            <p>Cadastre-se</p>
+            <Button
+              color='#0F0F0F'
+              border='1px solid #080809; '
+              width={25}
+              boxShadow='1px 1px 3px'
+              titulo='Entrar' onClick={handleLogin}
+              icon={<FaKey color={'#C0C0C0'} size={20} />}
+            />
           </ConatainerBotoes>
 
         </ContainerForm>
       </ContainerBody>
-
-
-      {/* <ContainerFooter>
-        <p>Cadastre-se</p>
-      </ContainerFooter> */}
     </Container>
   )
 }

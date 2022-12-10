@@ -1,26 +1,53 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
+interface Props {
+    color: string;
+    border: string;
+    width: number;
+    boxShadow: string;
+}
 
-export const Botao = styled.button`
-    width: 20%;
+export const Botao = styled.button<Props>`
+    width: ${(props) => props.width}%;
     height: 40px;
-    font-size: 18px;
+    font-size: 17px;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    text-align: center;
 
     border-radius: 10px;
 
-    border:  1px solid #FF0000;
-    background-color: #FF0000;
-    color: white;
+    border: ${(props) => props.border};
+    background-color: ${(props) => props.color};
+    color: #C0C0C0;
     cursor: pointer;
 
-    box-shadow: 1px 3px 3px rgba(0,0,0,0.2);
+    ${({ border }) => border != 'none' && css`
+        
+    `}
+  
 
-    &:hover{
-        background-color: #FF211B;
-        box-shadow: 1px 3px 3px rgba(0,0,0,0.4);
+    ${({ border }) => border != 'none' && css`
+
+        box-shadow: 0 1px 4px black; 
+
+        :hover{
+            border-color: #080809; 
+            box-shadow: 2px 3px 15px black;
+            transition: 0.2s ease-out;
+        }
+    `
+    // || css`
+    //     :hover{
+    //         /* color: #FF211B; */
+    //         font-size: 20px;
+    //         box-shadow: 0 0 0 black;
+    //         transition: 0.2s ease-out;
+    //     }
+    
+    // ` 
     }
 `;
+

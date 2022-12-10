@@ -24,16 +24,32 @@ export const AuthProvider = ({children} : {children : JSX.Element}) => {
         validartoken();
     }, [api]);
 
-    const login = async (email:string, senha:string) => {
-        const data = await api.login(email, senha);
+    const login = async (email: string, senha: string) => {
+        try {
+            const data = await api.login(email, senha);
 
-        if (data.usuario && data.token) {
-            setUsuario(data.usuario);
-            setToken(data.token);
+            if (data.usuario && data.token) {
+                setUsuario(data.usuario);
+                setToken(data.token);                
+            }
+
             return true;
+            
+        } catch (err : any) {
+
+            switch (err.code) {
+                case "ERR_NETWORK":
+                    alert("ops! sem acesso a internet!");
+                    break;
+                default:
+                    alert(err.response.data);
+            }
+            return false;
         }
 
-        return false;
+      
+
+       
     }
 
     const logout = () => {

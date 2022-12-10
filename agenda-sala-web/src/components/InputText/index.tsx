@@ -2,7 +2,7 @@ import { InputHTMLAttributes } from 'react';
 import { Container, CampoTxt, ContainerIcon } from './styles';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-    icon: JSX.Element;
+    icon?: JSX.Element;
     tipoText: string;
     placheholder: string;
 }

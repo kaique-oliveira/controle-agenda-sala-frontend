@@ -9,8 +9,8 @@ export const Container = styled.div`
     align-items: center;
 
     border-radius: 10px;
-    border:  1px solid #696969;
-    background-color: white;
+    border:  1px solid #403F3F;
+    background-color: #303030;
 `;
 
 export const ContainerIcon = styled.div`
@@ -32,11 +32,11 @@ export const CampoTxt = styled.input`
     border-radius: 10px;
     border: none;
 
-    background-color: white;
-    color: #4F4F4F;
+    background-color: #303030;
+    color: #C0C0C0;
 
     outline-width: 0;
     ::placeholder{
-        color: #C0C0C0;
+        color:  #4F4F4F;
     }
 `;
