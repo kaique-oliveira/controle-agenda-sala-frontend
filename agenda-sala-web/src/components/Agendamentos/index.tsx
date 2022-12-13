@@ -1,68 +1,65 @@
 import { useEffect, useState } from 'react'
 import { FaCalendarPlus, FaClock, FaHourglassStart, FaTrash } from 'react-icons/fa'
-import { useApi } from '../../hooks/useApi'
 import { useHome } from '../../hooks/useHome'
-import { IAgendamentos } from '../../interfaces/IAgendamentos'
-import { ISala } from '../../interfaces/ISala'
 import Button from '../Button'
-import { Calendario } from '../Calendario'
 import Card from '../Card'
 import InputHora from '../InputHora'
 import InputDuracao from '../InputDuracao'
-import InputSala from '../InputSala'
 import { ContainerAside, ContainerCards, ContainerForm } from './styles'
 import { useAuth } from '../../hooks/useAuth'
-import { IAgendaSala } from '../../interfaces/IAgendamento'
+import { IAgendamento } from '../../interfaces/IAgendamento'
+import { useAgendamento } from '../../hooks/useAgendamento'
+import { FiltrosAgendamentos } from '../FiltrosAgendamento'
 
 const Agendamentos = () => {
 
-    const api = useApi();
-    const home = useHome();
-    const {usuario} = useAuth();
-    const [idSala, setIdSala] = useState<number>(1);
-    const [salas, setSalas] = useState<ISala[]>([]);
-    const [minutos, setMinutos] = useState<number[]>([]);
-    const [horas, setHoras] = useState<number[]>([]);
-    const [duracoes, setDuracoes] = useState<number[]>([]);
-    const [data, setData] = useState<string>(new Date().toISOString());
-    const [agendamentos, setAgendamentos] = useState<IAgendamentos[]>([]);
+
+  const home = useHome();
+  const agend = useAgendamento();
+  const { usuario } = useAuth();
+
   
-  
+  const [minutos, setMinutos] = useState<number[]>([]);
+  const [horas, setHoras] = useState<number[]>([]);
+  const [duracoes, setDuracoes] = useState<number[]>([]);
   const [horaInicial, setHoraInicial] = useState('07');
   const [minutoInicial, setMinutoInicial] = useState('00');
   const [horaDuracao, setHoraDuracao] = useState('00');
   const [minutoDuracao, setMinutoDuracao] = useState(null);
+  
 
-    useEffect(() => {
-        carregarSalas();
-        carregarAgendamentos(data, idSala);
-      }, [data, idSala]);
-    
-      useEffect(() => {
-        setHoras(home.gerarHoras());
-        setMinutos(home.gerarMinutos());
-        setDuracoes(home.gerarDuracoes());
-      }, []);
-    
-    
-      const carregarSalas = async() => {
-        const _salas: [] = await api.buscarSalas();
-        setSalas(_salas);
-     
-      };
-    
-      const carregarAgendamentos = async (data: string, idSala:number) => {
-        const _agendamentos: IAgendamentos[] = await api.buscarAgendamentos(data, idSala);
+  useEffect(() => {
+      setHoras(home.gerarHoras());
+      setMinutos(home.gerarMinutos());
+      setDuracoes(home.gerarDuracoes());
+    }, []);
+  
+  const agendar = async () => {
+    if (horaInicial && minutoInicial && horaDuracao && minutoDuracao) {
+      const horaIn = new Date(`${new Date().toLocaleDateString()} ${horaInicial}:${minutoInicial}:00`);
+      const duracao = new Date(`${new Date().toLocaleDateString()} ${horaDuracao}:${minutoDuracao}:00`);
 
-        if (_agendamentos) {
-          setAgendamentos(_agendamentos);
-        } 
+
+      const dadosAgendamento : IAgendamento = {
+        dataAgendamento: agend.data.toJSON(),
+        horaInicial: horaIn.toJSON(),
+        duracao: duracao.toJSON(),
+        idSala: agend.idSala,
+        idUsuario:  usuario?.usuario.id || 0
       }
+      
+      agend.agendar(dadosAgendamento);
+    }
+    else {
+      alert('Seleciona a hora inicial e a duração corretamente.')
+    }
+  }
 
-    //@ts-ignore
-    const onchangeData = d => {
-        const dataRecuperada = d.toISOString();
-        setData(dataRecuperada);
+
+
+  //@ts-ignore
+  const deletarAgendamento = async (event) => {
+        await agend.deletarAgendamento(parseInt(event.nativeEvent.path[2].id));
   }
   
   //@ts-ignore
@@ -77,72 +74,24 @@ const Agendamentos = () => {
     }
   }
 
-    //@ts-ignore
-    const handleDuracao = d => {
-      switch (d.target.id) {
-        case 'selectHoraDuracao':
-          setHoraDuracao(d.target.value);
-          break;
-        case 'selectMinutoDuracao':
-          setMinutoDuracao(d.target.value)
-          break;
-      }
-    }
-
-  const fazerAgendamento = async () => {
-    if (horaInicial && minutoInicial && horaDuracao && minutoDuracao) {
-      const hra = new Date(`${new Date().toLocaleDateString()} ${horaInicial}:${minutoInicial}:00`);
-      const dr = new Date(`${new Date().toLocaleDateString()} ${horaDuracao}:${minutoDuracao}:00`);
-
-
-      const agendamento: IAgendaSala = {
-        dataAgendamento: data,
-        horaInicial: hra.toJSON(),
-        duracao: dr.toJSON(),
-        idSala: idSala,
-        idUsuario:  usuario?.usuario.id || 0
-      }
-
-      
-
-      await api.persistirAgendamento(agendamento);
-
-      setTimeout(() => {
-        carregarAgendamentos(data, idSala);
-      }, 2000);
-    }
-    else {
-      alert('Seleciona a hora inicial e a duração corretamente.')
-    }
-  }
-
   //@ts-ignore
-  const deletarAgendamento = async (event) => {
-
-      await api.deletarAgendamento(event.nativeEvent.path[2].id);
-
-      setTimeout(() => {
-        carregarAgendamentos(data, idSala);
-      }, 1000);
-    
+  const handleDuracao = d => {
+    switch (d.target.id) {
+      case 'selectHoraDuracao':
+        setHoraDuracao(d.target.value);
+        break;
+      case 'selectMinutoDuracao':
+        setMinutoDuracao(d.target.value)
+        break;
+    }
   }
 
 
     return (
     <>
     <ContainerAside>
-        <InputSala
-        titulo="Local:"
-        salas={salas}
-        onChange={(s) => setIdSala(parseInt(s.target.value))}
-        value={idSala}
-        />
-
-        <Calendario
-        onChange={onchangeData}
-        value={new Date(data)}
-        />
-      
+  
+        <FiltrosAgendamentos/>
 
         <ContainerForm>
             <InputHora
@@ -168,13 +117,13 @@ const Agendamentos = () => {
                 boxShadow='1px 1px 3px'
                 titulo='Agendar' 
               icon={<FaCalendarPlus color={'#C0C0C0'} size={20} />}
-              onClick={fazerAgendamento}
+              onClick={agendar}
             />
         </ContainerForm>    
       </ContainerAside>
 
        <ContainerCards>          
-        {agendamentos && agendamentos.map((a) => {
+        {agend.agendamentos && agend.agendamentos.map((a) => {
           return (
           <Card key={a.id}
             titulo={` ${a.usuario.nome} - ${a.usuario.setor.nome}`}

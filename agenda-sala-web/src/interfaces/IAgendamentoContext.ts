@@ -7,7 +7,9 @@ export interface IAgendamentoContext{
     idSala: number;
     setIdSala: (idSala: number) => void;
     data: Date;
+    agendamentos: IAgendamentos[];
     setData: (sata: Date) => void;
     agendar: (agendamento: IAgendamento) => Promise<void>;
-    buscarAgendamentos: () => Promise<IAgendamentos[]>
+    buscarAgendamentos: () => Promise<void>
+    deletarAgendamento: (idAgendmaento: number) => Promise<void>;
 }

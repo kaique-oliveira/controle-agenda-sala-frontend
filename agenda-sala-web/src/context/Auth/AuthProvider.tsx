@@ -42,7 +42,7 @@ export const AuthProvider = ({children} : {children : JSX.Element}) => {
                     alert("ops! sem acesso a internet!");
                     break;
                 default:
-                    alert(  );
+                    alert(err.response.data );
             }
             return false;
         }

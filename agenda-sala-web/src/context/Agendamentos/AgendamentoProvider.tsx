@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AgendamentoContext } from "./AgendamentoContext"
 import { useApi } from "../../hooks/useApi";
 import { IAgendamentos } from "../../interfaces/IAgendamentos";
@@ -13,25 +13,31 @@ export const AgendamentoProvider = ({ children }: { children: JSX.Element }) => 
     const api = useApi();
 
 
+    useEffect(() => { 
+        buscarAgendamentos();
+    }, [api, idSala, data]);
+
     const agendar = async (agendamento : IAgendamento) => {
 
-        await api.persistirAgendamento(agendamento);
+        await api.cadastrarAgendamento(agendamento);
 
     }
 
-    const buscarAgendamentos = async(idSala : number, data: Date) => {
+    const buscarAgendamentos = async() => {
         const _agendamentos: IAgendamentos[] = await api.buscarAgendamentos(idSala, data.toJSON());
 
         if (_agendamentos) {
             setAgendamentos(_agendamentos);
         } 
-
-        return agendamentos;
     }
 
+    const deletarAgendamento = async (idAgendamento : number) => {
+
+        await api.deletarAgendamento(idAgendamento);
+    }
 
     return (
-        <AgendamentoContext.Provider value={{ agendar, buscarAgendamentos }}>
+        <AgendamentoContext.Provider value={{idSala, setIdSala, data, setData , agendar, buscarAgendamentos, agendamentos, deletarAgendamento}}>
             {children}
         </AgendamentoContext.Provider>
     );

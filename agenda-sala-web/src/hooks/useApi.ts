@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IAgendar } from '../interfaces/IAgendamento';
+import { IAgendamento } from '../interfaces/IAgendamento';
 
 const api = axios.create({
     baseURL: process.env.REACT_APP_API
@@ -22,7 +22,7 @@ export const useApi = () => ({
         return response.data;
     },
 
-    persistirAgendamento: async (agendamento: IAgendar) => {     
+    cadastrarAgendamento: async (agendamento: IAgendamento) => {     
         try {
             const response = await api.post('agendamento/inserir', agendamento, config);
 
