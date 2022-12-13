@@ -22,11 +22,11 @@ function InputText({ icon, horas, minutos, titulo, ...rest }: Props) {
       
 
       <ContainerSelect>
-        <SelectHora {...rest} id='selectHora'> 
+        <SelectHora {...rest} id='selectHoraDuracao'> 
           {horas.map((h) => <option key={h}>{h < 10 ? '0' + h : h}</option>)}
         </SelectHora>
         <Textos>:</Textos>
-        <SelectMinuto {...rest} id='selectMinuto'>
+        <SelectMinuto {...rest} id='selectMinutoDuracao'>
           {minutos.map((m) => <option key={m}>{m < 10 ? '0' + m : m}</option>)}
         </SelectMinuto>
       </ContainerSelect>

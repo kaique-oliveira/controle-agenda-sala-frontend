@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     width: 65%;
-    height: 80px;
+    height: 70px;
 
     display: flex;
     justify-content: center;
@@ -21,7 +21,6 @@ export const ConatinerInfo = styled.div`
     flex-direction: column;
     justify-content: space-around;
 
-    padding: 10px;
     margin-left: 5px;
     background-color: #0D0D0E;
 `;
@@ -42,16 +41,20 @@ export const ContainerBotoes = styled.div`
 
 export const Titulo = styled.h3`
     color: #FF211B;
+    height: 35px;
 
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 `;
 
 export const Descricao = styled.p`
     color: #C0C0C0;
+    height: 35px;
 
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 `;

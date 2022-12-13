@@ -24,10 +24,7 @@ export const Botao = styled.button<Props>`
     color: #C0C0C0;
     cursor: pointer;
 
-    ${({ border }) => border != 'none' && css`
-        
-    `}
-  
+   
 
     ${({ border }) => border != 'none' && css`
 

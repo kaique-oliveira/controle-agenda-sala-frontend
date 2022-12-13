@@ -1,8 +1,10 @@
-import Calendar from 'react-calendar';
+import Calendar, { CalendarProps } from 'react-calendar';
 
 import './styles.css';
-export const Calendario = () => {
+
+
+export const Calendario = ({...rest} : CalendarProps ) => {
     return (
-        <Calendar minDate={new Date()} />
+        <Calendar minDate={new Date()} {...rest} />
     );
 }
