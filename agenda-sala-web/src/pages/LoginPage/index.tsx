@@ -5,7 +5,7 @@ import logo from '../../assets/calendar.svg'
 import { useState } from "react";
 import { 
   Container, 
-  ConatainerBotoes,
+  ContainerBotoes,
   ContainerBody, 
   ContainerInputs,
   ContainerForm,
@@ -14,8 +14,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
-
-
 function LoginPage() {
   const auth = useAuth();
   const navigate = useNavigate();
@@ -23,7 +21,7 @@ function LoginPage() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  async function handleLogin() {
+  async function handleLogin() { 
     if (email && senha) {
       const isLogado = await auth.login(email, senha);
 
@@ -54,7 +52,7 @@ function LoginPage() {
             />
           </ContainerInputs>
         
-          <ConatainerBotoes>
+          <ContainerBotoes>
             <Button
               color='#0F0F0F'
               border='1px solid #080809; '
@@ -63,7 +61,7 @@ function LoginPage() {
               titulo='Entrar' onClick={handleLogin}
               icon={<FaKey color={'#C0C0C0'} size={20} />}
             />
-          </ConatainerBotoes>
+          </ContainerBotoes>
 
         </ContainerForm>
       </ContainerBody>

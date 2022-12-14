@@ -6,6 +6,7 @@ import { AuthContext } from './AuthContext'
 export const AuthProvider = ({children} : {children : JSX.Element}) => {
     
     const [usuario, setUsuario] = useState<IUsuario | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const api = useApi();
 
     useEffect(() => { 
@@ -16,7 +17,11 @@ export const AuthProvider = ({children} : {children : JSX.Element}) => {
                 const data = await api.validarToken(storangeData);
  
                 if (data) {
+
                     setUsuario(data);
+                    setTimeout(() => {
+                        setIsLoading(false);
+                    }, 500);                  
                 }
             }
         }
@@ -33,8 +38,11 @@ export const AuthProvider = ({children} : {children : JSX.Element}) => {
                 setToken(data.token);                
             }
 
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 500);  
+
             return true;
-            
         } catch (err : any) {
 
             switch (err.code) {
@@ -58,7 +66,7 @@ export const AuthProvider = ({children} : {children : JSX.Element}) => {
     }
 
     return (
-        <AuthContext.Provider value={{ usuario, login, logout }}>
+        <AuthContext.Provider value={{ usuario, login, logout, isLoading }}>
             {children}
         </AuthContext.Provider>
     )

@@ -60,7 +60,7 @@ export const Imagem = styled.img`
 ;
 `;
 
-export const ConatainerBotoes = styled.div`
+export const ContainerBotoes = styled.div`
     width: 440px;
     height: auto;
 

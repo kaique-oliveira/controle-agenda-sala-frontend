@@ -29,7 +29,7 @@ export const useApi = () => ({
             return response.data;
         }
         catch (err: any) {
-            alert(err.response.data);
+            alert(JSON.stringify(err.response.data));
         }
     },
 

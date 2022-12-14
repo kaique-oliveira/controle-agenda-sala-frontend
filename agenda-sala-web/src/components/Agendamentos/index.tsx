@@ -32,14 +32,15 @@ const Agendamentos = () => {
       setHoras(home.gerarHoras());
       setMinutos(home.gerarMinutos());
       setDuracoes(home.gerarDuracoes());
-    }, []);
+  }, []);
+  
   
   const agendar = async () => {
     if (horaInicial && minutoInicial && horaDuracao && minutoDuracao) {
-      const horaIn = new Date(`${new Date().toLocaleDateString()} ${horaInicial}:${minutoInicial}:00`);
-      const duracao = new Date(`${new Date().toLocaleDateString()} ${horaDuracao}:${minutoDuracao}:00`);
+      const horaIn = new Date(`${new Date().toDateString()} ${horaInicial}:${minutoInicial}:00`);
+      const duracao = new Date(`${new Date().toDateString()} ${horaDuracao}:${minutoDuracao}:00`);
 
-
+      
       const dadosAgendamento : IAgendamento = {
         dataAgendamento: agend.data.toJSON(),
         horaInicial: horaIn.toJSON(),
@@ -54,8 +55,6 @@ const Agendamentos = () => {
       alert('Seleciona a hora inicial e a duração corretamente.')
     }
   }
-
-
 
   //@ts-ignore
   const deletarAgendamento = async (event) => {

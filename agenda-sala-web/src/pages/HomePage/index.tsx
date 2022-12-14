@@ -4,20 +4,19 @@ import Agendamentos from "../../components/Agendamentos";
 import { AgendamentoProvider } from '../../context/Agendamentos/AgendamentoProvider';
 
 const HomePage = () => {
-
-  return (
-
-    <AgendamentoProvider>
-      <ContainerBody>
-        <Header />
+    return (
+      <AgendamentoProvider>
+        <ContainerBody>
+          <Header />
   
-        <ContainerMain> 
-          <Agendamentos/>
-        </ContainerMain>
+          <ContainerMain>
+            <Agendamentos />
+          </ContainerMain>
         
-      </ContainerBody>
-    </AgendamentoProvider>
-  )
+        </ContainerBody>
+      </AgendamentoProvider >
+  
+    )
 }
 
 export default HomePage;
