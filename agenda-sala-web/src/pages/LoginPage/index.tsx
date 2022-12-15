@@ -14,7 +14,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
-function LoginPage() {
+const LoginPage = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
@@ -58,10 +58,19 @@ function LoginPage() {
               border='1px solid #080809; '
               width={25}
               boxShadow='1px 1px 3px'
-              titulo='Entrar' onClick={handleLogin}
+              titulo='Entrar' 
               icon={<FaKey color={'#C0C0C0'} size={20} />}
+              onClick={handleLogin}
             />
           </ContainerBotoes>
+          <Button
+                color='#131313'         
+                border='none'
+                width={30}
+                boxShadow='0 0 0'
+                titulo="Cadastre-se"
+                onClick={() => navigate('/cadastrese')}
+            />
 
         </ContainerForm>
       </ContainerBody>

@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
 export const ContainerSelect = styled.div`
-    width: 90%;
+    width: 100%;
     height: 45px;
 
     border-radius: 10px;
-
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
     background-color: #303030;
+    border: 1px solid #403F3F;
 `;
 
-export const SelectSala = styled.select`
-    width: 75%;
+export const SelectSetor = styled.select`
+    width: 80%;
     height: 40px;
 
     font-size: 18px;
@@ -33,14 +33,9 @@ export const SelectSala = styled.select`
 `;
 
 export const Titulo = styled.span`
+    width: 15%;
+    margin-left: 10px;
     font-size: 18px;
     color: #C0C0C0;
-    margin-left: 10px;
-`;
 
-
-export const Options = styled.option`
-    font-size: 18px;
-    width: 100%;
-    height: auto;
 `;

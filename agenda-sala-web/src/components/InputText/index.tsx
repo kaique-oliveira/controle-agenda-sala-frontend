@@ -4,7 +4,7 @@ import { Container, CampoTxt, ContainerIcon } from './styles';
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
     icon?: JSX.Element;
     tipoText: string;
-    placheholder: string;
+    placheholder?: string;
 }
 
 

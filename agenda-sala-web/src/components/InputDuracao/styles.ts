@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 
 export const Container = styled.div`
-    width: 70%;
+    width: 90%;
     height: 45px;
 
     border-radius: 10px;
@@ -16,7 +16,7 @@ export const Container = styled.div`
 `;
 
 export const ContainerIcon = styled.div`
-    width: 50%;
+    width: 60%;
     height: 100%;
 
     display: flex;

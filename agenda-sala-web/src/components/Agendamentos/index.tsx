@@ -112,7 +112,7 @@ const Agendamentos = () => {
             <Button
                 color='#0F0F0F'
                 border='1px solid #080809'
-                width={30}
+                width={40}
                 boxShadow='1px 1px 3px'
                 titulo='Agendar' 
               icon={<FaCalendarPlus color={'#C0C0C0'} size={20} />}

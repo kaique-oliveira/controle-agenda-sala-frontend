@@ -14,3 +14,13 @@ background-color:#131313;
 border-bottom: 1px solid #080809;
 box-shadow: 0 1px 5px black;
 `;
+
+export const ContainerBotoes = styled.div`
+    width: auto;
+    height: auto;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 15px;
+`;

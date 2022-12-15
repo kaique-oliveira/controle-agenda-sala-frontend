@@ -5,14 +5,10 @@ import LoginPage from "../../pages/LoginPage";
 export const RequireAuth = ({ children }: { children: JSX.Element }) => {
     const auth = useAuth();
 
-    if (auth.isLoading) {
-        return <Loading />
-        
-        if (!auth.usuario) {
-            return <LoginPage/> 
-         }
-    }
    
+    if (auth.isLoading && auth.usuario) {
+        return <Loading />
+    }
 
-    return children;
+    return auth.usuario ? children : <LoginPage/> ;
 }

@@ -57,7 +57,6 @@ export const Imagem = styled.img`
     height: auto;
 
     margin-bottom: 60px;
-;
 `;
 
 export const ContainerBotoes = styled.div`
@@ -69,3 +68,4 @@ export const ContainerBotoes = styled.div`
     justify-content: center;
     align-items: center;
 `;
+

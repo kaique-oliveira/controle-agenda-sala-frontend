@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 65%;
+    width: 90%;
     height: 70px;
 
     display: flex;
     justify-content: center;
 
-    background-color: #FF211B;
+    background-color: #D35400;
     border: 1px solid #080809;
     box-shadow: 0 0 5px black;
 
@@ -40,7 +40,7 @@ export const ContainerBotoes = styled.div`
 
 
 export const Titulo = styled.h3`
-    color: #FF211B;
+    color: #D35400;
     height: 35px;
 
     display: flex;

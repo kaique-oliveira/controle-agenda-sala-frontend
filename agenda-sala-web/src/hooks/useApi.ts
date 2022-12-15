@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { IAgendamento } from '../interfaces/IAgendamento';
+import { ICadastroUSuario } from '../interfaces/ICadastroUsuario';
 
 const api = axios.create({
     baseURL: process.env.REACT_APP_API
@@ -20,6 +21,16 @@ export const useApi = () => ({
         const response = await api.post('login/validartoken', { token });
 
         return response.data;
+    },
+
+    cadastrarUsuario: async (usuario : ICadastroUSuario) => {
+        try {
+            const response = await api.post('usuario/inserir', usuario, config);
+
+            return response.data;
+        }catch (err: any) {
+                alert(JSON.stringify(err.response.data));
+        }
     },
 
     cadastrarAgendamento: async (agendamento: IAgendamento) => {     
@@ -48,6 +59,12 @@ export const useApi = () => ({
     buscarAgendamentos: async (idSala: number, data: string) => {
 
         const response = await api.post('agendamento/buscar', {idSala, data}, config);
+   
+        return response.data;
+    },
+
+    buscarSetores: async () => {
+        const response = await api.get('setor/buscar');
    
         return response.data;
     },

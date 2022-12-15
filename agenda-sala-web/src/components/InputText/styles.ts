@@ -9,7 +9,7 @@ export const Container = styled.div`
     align-items: center;
 
     border-radius: 10px;
-    border:  1px solid #403F3F;
+    border: 1px solid #403F3F;
     background-color: #303030;
 `;
 
