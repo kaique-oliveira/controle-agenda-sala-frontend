@@ -1,22 +1,24 @@
-import { Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components'
+import { BrowserRouter, Routes} from 'react-router-dom';
+import { AuthProvider } from './contexts/Auth/AuthProvider';
+import theme from './themes/theme'
+import { AgendamentoProvider } from './contexts/Agendamento/AgendamentoProvider';
+import Rotas from './routes/Rotas';
 
-import LoginPage from './pages/LoginPage';
-import HomePage from './pages/HomePage';
-import { RequireAuth } from './context/Auth/RequireAuth';
-import CadastreSePage from './pages/CadastreSePage';
 
+const App = () => {
 
-function App() {
-  return (    
-      <Routes>
-        <Route path='/' element={ <LoginPage/> } />
-        <Route path='/cadastrese' element={<CadastreSePage/>}/>
-        <Route path='/home' element={
-          //@ts-ignore
-          <RequireAuth> <HomePage/> </RequireAuth>
-        }/>
-      </Routes>
-  )  
+  return ( 
+    <BrowserRouter>
+      <AuthProvider>
+        <AgendamentoProvider>
+          <ThemeProvider theme={theme.COLORS}>         
+            <Rotas/>
+          </ThemeProvider>
+        </AgendamentoProvider>
+      </AuthProvider>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App

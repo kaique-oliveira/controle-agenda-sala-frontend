@@ -1,11 +1,12 @@
-import { Load, Container } from "./styles"
+import { Body, Imagem } from './styles';
 import img from '../../assets/loading.svg';
 
-
-export const Loading = () => {
-    return (
-        <Container>
-            <Load src={ img } />
-        </Container>
-    )
+const Loading = () => {
+  return (
+    <Body>
+          <Imagem src={ img } />      
+    </Body>
+  )
 }
+
+export default Loading

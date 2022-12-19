@@ -1,31 +1,35 @@
-import axios from 'axios';
-import { IAgendamento } from '../interfaces/IAgendamento';
-import { ICadastroUSuario } from '../interfaces/ICadastroUsuario';
+import axios from "axios";
+import { ICadastrarAgendamento, ICadastrarUSuario } from "../interfaces/ICadastrar";
 
 const api = axios.create({
-    baseURL: process.env.REACT_APP_API
+    baseURL: process.env.REACT_APP_API,
 });
 
-const config = {
-    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-}
 
 export const useApi = () => ({
 
+    //login
     login: async (email: string, senha: string) => {
         const response = await api.post('login/usuario', { email, senha });
+
+        if (response.data.token) {
+            api.defaults.headers.common = { 'Authorization': `Bearer ${response.data.token}` };
+        }
+
         return response.data;
     },
 
     validarToken: async (token: string) => {
         const response = await api.post('login/validartoken', { token });
-
+        api.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
         return response.data;
     },
+    
 
-    cadastrarUsuario: async (usuario : ICadastroUSuario) => {
+    //usuario
+    cadastrarUsuario: async (usuario : ICadastrarUSuario) => {
         try {
-            const response = await api.post('usuario/inserir', usuario, config);
+            const response = await api.post('usuario/inserir', usuario);
 
             return response.data;
         }catch (err: any) {
@@ -33,20 +37,27 @@ export const useApi = () => ({
         }
     },
 
-    cadastrarAgendamento: async (agendamento: IAgendamento) => {     
-        try {
-            const response = await api.post('agendamento/inserir', agendamento, config);
 
-            return response.data;
+    //agendamento
+    cadastrarAgendamento: async (agendamento: ICadastrarAgendamento) => {     
+        try {
+            const response = await api.post('agendamento/inserir', agendamento);
+            alert(response.data);
         }
         catch (err: any) {
-            alert(JSON.stringify(err.response.data));
+            alert(err.response.data);
         }
+    },
+
+    buscarAgendamentos: async (idSala: number, data: string) => {
+        const response = await api.post('agendamento/buscar', {idSala, data});
+
+        return response.data;
     },
 
     deletarAgendamento: async (idAgendamento : number) => {     
         try {
-            const response = await api.delete(`agendamento/deletar/${idAgendamento}`, config);
+            const response = await api.delete(`agendamento/deletar/${idAgendamento}`);
 
             alert('agendamento deletado com sucesso!');
             return response.data;
@@ -56,24 +67,24 @@ export const useApi = () => ({
         }
     },
 
-    buscarAgendamentos: async (idSala: number, data: string) => {
 
-        const response = await api.post('agendamento/buscar', {idSala, data}, config);
-   
-        return response.data;
+    //sala
+    buscarSalas: async () => {
+        try {
+            const response = await api.get('sala/buscar');
+            return response.data;
+        }
+        catch (err: any) {
+            console.log(err.response.data)
+        }  
     },
 
+
+    //Setor
     buscarSetores: async () => {
         const response = await api.get('setor/buscar');
    
         return response.data;
     },
-
-    buscarSalas: async () => {
-        const response = await api.get('sala/buscar', config);
-   
-        return response.data;
-    }
-
 
 });

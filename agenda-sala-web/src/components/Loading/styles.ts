@@ -1,6 +1,17 @@
 import styled from "styled-components";
 
-export const Load = styled.img`
+export const Body = styled.div`
+    background-color: #0D0D0E;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+
+export const Imagem = styled.img`
     width: 6%;
     height: auto;
     -webkit-animation:spin 4s linear infinite;
@@ -20,14 +31,4 @@ export const Load = styled.img`
         transform:rotate(360deg); 
     } 
 }`;
-
-export const Container = styled.div`
-    background-color: #0D0D0E;
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
 

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AgendamentoContext } from "../context/Agendamentos/AgendamentoContext";
+import { AgendamentoContext } from "../contexts/Agendamento/AgendamentoContext";
 
 export const useAgendamento= () => {
     const context = useContext(AgendamentoContext);
