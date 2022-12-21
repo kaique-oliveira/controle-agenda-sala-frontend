@@ -19,7 +19,7 @@ const CardAgendamento = ({ titulo, descricao, idAgendamento, idUsuario }: ICardA
           <Titulo> {titulo} </Titulo>
           <Descricao> { descricao } </Descricao>
       </Conteudo>
-      {usuario?.usuario && usuario?.usuario.id == idUsuario
+      {usuario && usuario.id == idUsuario
         ? <NavButton id={idAgendamento.toString()} icon={<FaTrash />} onClick={deletarAgendamento} /> 
         : null}
      

@@ -36,7 +36,7 @@ export const Body = styled.div<Props>`
 
 export const Input = styled.input`
     width: 95%;
-    height: 40px;
+    height: 100%;
 
     font-size: 18px;
     color: ${({ theme }) => theme.TEXT};

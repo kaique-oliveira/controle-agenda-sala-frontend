@@ -24,7 +24,7 @@ const HeaderGlobal = () => {
       <Nav>
           <NavButton
             icon={<FaCog />}
-            onClick={() => navigate('/cadastre-se')}
+            onClick={() => navigate('/configuracoes')}
           />
           <NavButton
             icon={<FaPowerOff/>}

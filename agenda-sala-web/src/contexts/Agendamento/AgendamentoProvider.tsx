@@ -25,8 +25,7 @@ export const AgendamentoProvider = ({ children }: { children: JSX.Element }) => 
     }
 
     const deletarAgendamento = async (id : number) => {
-        await api.deletarAgendamento(id);
-        await buscarAgendamentos(idSala, data);
+        await api.deletarAgendamento(id).then(() => buscarAgendamentos(idSala, data));
     }
 
     return (

@@ -57,11 +57,10 @@ const FormAgendamento = () => {
         horaInicial: (new Date(`${new Date().toDateString()} ${horaIncio}:${minutoIncio}:00`)).toJSON(),
         duracao: (new Date(`${new Date().toDateString()} ${horaDuracao}:${minutoDuracao}:00`)).toJSON(),
         idSala: idSala!,
-        idUsuario: (auth.usuario?.usuario.id!)
+        idUsuario: (auth.usuario?.id!)
       }
 
-      await agendamento.criarAgendamento(dadosAgendamento);
-      buscarAgendamentos();
+      await agendamento.criarAgendamento(dadosAgendamento).then(() => buscarAgendamentos());    
     }
     else {
       alert('Seleciona a hora inicial e a duração corretamente.')
@@ -92,8 +91,6 @@ const FormAgendamento = () => {
         break;
     }
   }
-
-
 
   return (
     <Body>

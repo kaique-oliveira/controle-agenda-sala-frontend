@@ -1,12 +1,16 @@
-export interface IBuscarUsuario{
+export interface IValidarToken{
     token: string;
-    usuario: {
-        id: number
-        nome: string;
-        email: string;
-        tipo: string;
-    }
+    usuario: IBuscarUsuario;
 };
+
+export interface IBuscarUsuario{
+    id: number
+    nome: string;
+    email: string;
+    tipo: string;
+    setor: IBuscarSetor; 
+}
+
 
 export interface IBuscarSala{
     id: number;

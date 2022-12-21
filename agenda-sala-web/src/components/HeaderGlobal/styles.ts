@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
-    width: 98%;
+    width: 98vw;
     height: 5%;
 
     padding:0 1%;
@@ -16,6 +16,7 @@ export const Header = styled.header`
 
     position: fixed;
     top: 0;
+
 `;
 
 export const Nav = styled.nav`

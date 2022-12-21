@@ -1,4 +1,5 @@
 import axios from "axios";
+import { IBuscarUsuario, IValidarToken } from "../interfaces/IBuscar";
 import { ICadastrarAgendamento, ICadastrarUSuario } from "../interfaces/ICadastrar";
 
 const api = axios.create({
@@ -20,9 +21,9 @@ export const useApi = () => ({
     },
 
     validarToken: async (token: string) => {
-        const response = await api.post('login/validartoken', { token });
+        const response = await (await api.post('login/validartoken', { token })).data as IValidarToken;
         api.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
-        return response.data;
+        return response;
     },
     
 
@@ -36,6 +37,15 @@ export const useApi = () => ({
                 alert(JSON.stringify(err.response.data));
         }
     },
+
+    buscarUsuarios: async () => {
+        const response = await (await api.get('usuario/buscar')).data as IBuscarUsuario[];
+
+        return response;
+    },
+
+
+
 
 
     //agendamento

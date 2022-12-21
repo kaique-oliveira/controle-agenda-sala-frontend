@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, InputHTMLAttributes, SelectHTMLAttributes, ImgHTMLAttributes } from 'react';
+import { IBuscarUsuario } from '../IBuscar';
 
 export interface ITextInput extends InputHTMLAttributes<HTMLInputElement>{
     icon?: JSX.Element;
@@ -36,6 +37,10 @@ export interface ICardAgendamento{
     button?: React.ReactNode;
     titulo: string;
     descricao: string;
+};
+
+export interface ICardUsuario{
+    usuario: IBuscarUsuario;
 };
 
 export interface ICheckAdmin extends InputHTMLAttributes<HTMLInputElement>{

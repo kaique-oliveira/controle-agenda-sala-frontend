@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Body = styled.div`
     width: 80%;
-    height: auto;
+    height: 30px;
 
     display: flex;
     justify-content: center;
@@ -13,8 +13,12 @@ export const Body = styled.div`
 
 export const Input = styled.input`
     color: #C0C0C0;
+    height: 100%;
+    cursor: pointer;
+    
 `;
 
 export const Titulo = styled.label`
     color: #C0C0C0;
+    cursor: pointer;
 `;
