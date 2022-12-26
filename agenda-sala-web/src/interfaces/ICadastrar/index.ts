@@ -7,7 +7,7 @@ export interface ICadastrarAgendamento {
     idUsuario: number;
 };
 
-export interface ICadastrarUSuario{
+export interface ICadastrarUsuario{
     id: number;
     nome: string;
     email: string;

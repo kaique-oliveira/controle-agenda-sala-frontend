@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { FaEnvelope, FaLock, FaNetworkWired, FaSave } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaNetworkWired, FaSave, FaUserAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import imgUsuario from '../../assets/users.svg';
 import { useApi } from '../../hooks/useApi';
 import { useAuth } from '../../hooks/useAuth';
 import { IBuscarSetor } from '../../interfaces/IBuscar';
-import { ICadastrarUSuario } from '../../interfaces/ICadastrar';
+import { ICadastrarUsuario } from '../../interfaces/ICadastrar';
 import ActionButton from '../ActionButton';
 import CheckAdmin from '../CheckAdmin';
 import { Imagem } from '../LogoScreen';
@@ -47,7 +47,7 @@ const FormCadastroUsuario = () => {
   const cadastrarUsuario = async (event: any) => {
     event.preventDefault();
     if(nome && email && senha && setor.nome && setor.id){ 
-        const dadosUsuario : ICadastrarUSuario = {
+        const dadosUsuario : ICadastrarUsuario = {
             id: id,
             nome: nome,
             email: email,
@@ -75,12 +75,13 @@ const FormCadastroUsuario = () => {
 
               <TextInput
                 isFocus={focoNome}
-                icon={<FaEnvelope />}
+                icon={<FaUserAlt />}
                 tipo="text"
                 placeholder="seu nome"
                 onFocus={() => setFocoNome(true)}
                 onBlur={() => setFocoNome(false)}
                 onChange={n => setNome(n.target.value)}
+                value={nome}
               />
               
               <TextInput

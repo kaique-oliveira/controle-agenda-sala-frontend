@@ -4,6 +4,7 @@ import { AuthProvider } from './contexts/Auth/AuthProvider';
 import theme from './themes/theme'
 import { AgendamentoProvider } from './contexts/Agendamento/AgendamentoProvider';
 import Rotas from './routes/Rotas';
+import { AdmProvider } from './contexts/AdmUsuario/AdmUsuarioProvider';
 
 
 const App = () => {
@@ -12,9 +13,11 @@ const App = () => {
     <BrowserRouter>
       <AuthProvider>
         <AgendamentoProvider>
-          <ThemeProvider theme={theme.COLORS}>         
-            <Rotas/>
-          </ThemeProvider>
+          <AdmProvider>
+            <ThemeProvider theme={theme.COLORS}>         
+              <Rotas/>
+            </ThemeProvider>
+          </AdmProvider>
         </AgendamentoProvider>
       </AuthProvider>
     </BrowserRouter>

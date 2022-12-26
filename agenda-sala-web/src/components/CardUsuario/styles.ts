@@ -2,20 +2,24 @@ import styled from "styled-components";
 
 export const Body = styled.div`
     width: 90%;
-    height: 80px;
-
+    height: 70px;
+    min-height: 70px;
+    
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 
     background-color: ${({ theme }) => theme.FUNDOTELA};
     border: 1px solid ${({theme}) => theme.BORDACONTAINER};
-    box-shadow: 0 0 3px ${({theme}) => theme.SHADOW};
+    box-shadow: 0 0 3px ${({ theme }) => theme.SHADOW};
+    
+    position: relative;
+    overflow-y: hidden;
 `;
 
 export const Conteudo = styled.div`
     width: 90%;
-    height: 70px;
+    height: 100%;
 
     display: flex;
     justify-content: space-evenly;

@@ -1,12 +1,18 @@
 import { FaTrash, FaUserEdit } from 'react-icons/fa'
+import { useAdmUsuario } from '../../hooks/useAdmUsuario'
 import { ICardUsuario } from '../../interfaces/IComponents'
 import NavButton from '../NavButton'
 import { Body, Botoes, Conteudo, Descricao, Titulo } from './styles'
 
 const CardUsuario = ({ usuario }: ICardUsuario) => {
+  const { recuperarUsuario, deletarUsuario } = useAdmUsuario();
   
-  const recuperarDados = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(event.currentTarget.id);
+  const recuperarDadosEditar = (event: React.MouseEvent<HTMLButtonElement>) => {
+    recuperarUsuario(parseInt(event.currentTarget.id));
+  }
+
+  const deletar = (event: React.MouseEvent<HTMLButtonElement>) => {
+    deletarUsuario(parseInt(event.currentTarget.id));
   }
 
   return (
@@ -19,9 +25,13 @@ const CardUsuario = ({ usuario }: ICardUsuario) => {
         <NavButton
           id={usuario.id.toString()}
           icon={<FaUserEdit />}
-          onClick={recuperarDados}
+          onClick={recuperarDadosEditar}
         />
-        <NavButton id={usuario.id.toString()} icon={<FaTrash />} /> 
+        <NavButton
+          id={usuario.id.toString()}
+          icon={<FaTrash />}
+          onClick={deletar}
+        />  
       </Botoes>
   </Body>
   )

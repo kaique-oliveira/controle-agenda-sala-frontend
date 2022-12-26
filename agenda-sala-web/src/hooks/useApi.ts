@@ -1,6 +1,6 @@
 import axios from "axios";
 import { IBuscarUsuario, IValidarToken } from "../interfaces/IBuscar";
-import { ICadastrarAgendamento, ICadastrarUSuario } from "../interfaces/ICadastrar";
+import { ICadastrarAgendamento, ICadastrarUsuario } from "../interfaces/ICadastrar";
 
 const api = axios.create({
     baseURL: process.env.REACT_APP_API,
@@ -28,9 +28,19 @@ export const useApi = () => ({
     
 
     //usuario
-    cadastrarUsuario: async (usuario : ICadastrarUSuario) => {
+    cadastrarUsuario: async (usuario : ICadastrarUsuario) => {
         try {
             const response = await api.post('usuario/inserir', usuario);
+
+            return response.data;
+        }catch (err: any) {
+                alert(JSON.stringify(err.response.data));
+        }
+    },
+
+    editarUsuario: async (usuario : ICadastrarUsuario) => {
+        try {
+            const response = await api.put('usuario/atualizar', usuario);
 
             return response.data;
         }catch (err: any) {
@@ -44,6 +54,18 @@ export const useApi = () => ({
         return response;
     },
 
+    deletarUsuario: async (idUsuario : number) => {     
+        try {
+            const response = await api.delete(`usuario/deletar/${idUsuario}`);
+
+            alert('usuário deletado com sucesso!');
+            return response.data;
+        }
+        catch (err: any) {
+            alert('Ops, algo deu errado, tente de novo!');
+            console.log(err.response.data)
+        }
+    },
 
 
 

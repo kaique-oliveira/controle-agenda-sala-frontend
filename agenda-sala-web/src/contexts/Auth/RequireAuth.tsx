@@ -1,6 +1,6 @@
 import Loading from "../../components/Loading";
 import { useAuth } from "../../hooks/useAuth";
-import { IRequireAuth } from "../../interfaces/IAuthContext";
+import { IRequireAuth } from "../../interfaces/IContexts";
 import Login from "../../pages/Login";
 
 

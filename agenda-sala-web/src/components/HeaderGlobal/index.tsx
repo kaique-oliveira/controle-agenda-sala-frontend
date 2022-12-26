@@ -22,10 +22,13 @@ const HeaderGlobal = () => {
       </Nav>
         
       <Nav>
+        {auth.usuario?.tipo == 'admin' ?
           <NavButton
             icon={<FaCog />}
-            onClick={() => navigate('/configuracoes')}
+            onClick={() => navigate('/administracao')}
           />
+          : null
+        }
           <NavButton
             icon={<FaPowerOff/>}
             onClick={sair}

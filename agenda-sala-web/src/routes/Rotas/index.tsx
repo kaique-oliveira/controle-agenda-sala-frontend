@@ -18,11 +18,12 @@ const Rotas = () => {
             <Route path='/home' element={ 
                 //@ts-ignore
                 <RequireAuth> <Home/> </RequireAuth>
-            } /> 
-            <Route path='/configuracoes' element={ 
+            } />             
+            <Route path='/administracao' element={ 
                 //@ts-ignore
                 <RequireAuth> <Administracao/> </RequireAuth>
             } /> 
+            
                   
        </Routes>
    )

@@ -16,7 +16,7 @@ export const Body = styled.main`
 
 export const Section = styled.section`
     width: 90%;
-    height: 580px;
+    height: 550px;
 
     margin-top: 3%;
 
@@ -33,16 +33,18 @@ export const Section = styled.section`
 
 export const Cards = styled.div`
     width: 50%;
-    height: 90%;
+    height: auto;
+    max-height: 90%;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
 
     gap: 1em;
+    padding: 1em 0;
 
     background-color: ${({theme}) => theme.FUNDOCONTAINER};
 
-    position: static;
+    overflow-y: auto;
 `;
