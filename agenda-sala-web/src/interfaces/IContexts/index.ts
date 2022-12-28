@@ -1,5 +1,5 @@
-import { IBuscarAgendamento, IBuscarSala, IBuscarUsuario } from "../IBuscar";
-import { ICadastrarAgendamento, ICadastrarUsuario } from "../ICadastrar";
+import { IBuscarAgendamento, IBuscarSala, IBuscarSetor, IBuscarUsuario } from "../IBuscar";
+import { ICadastrarAgendamento, ICadastrarSetor, ICadastrarUsuario } from "../ICadastrar";
 
 
 export interface IAuthContext{
@@ -30,4 +30,14 @@ export interface IAdmUsuario{
     editarUsuario: (usuario :  ICadastrarUsuario) => Promise<void>;
     deletarUsuario: (idUsuario: number) => Promise<void>;
     recuperarUsuario: (idUsuario : number) => Promise<void>;
+}
+
+export interface IAdmSetor{
+    setores: IBuscarSetor[];
+    setorRecup: ICadastrarSetor;
+    setSetorRecup: (setor : ICadastrarSetor) => void;
+    buscarSetores: () => Promise<void>;
+    editarSetor: (setor :  ICadastrarSetor) => Promise<void>;
+    deletarSetor: (idSetor: number) => Promise<void>;
+    recuperarSetor: (idSetor : number) => Promise<void>;
 }

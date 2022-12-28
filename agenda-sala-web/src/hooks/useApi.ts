@@ -1,6 +1,6 @@
 import axios from "axios";
-import { IBuscarUsuario, IValidarToken } from "../interfaces/IBuscar";
-import { ICadastrarAgendamento, ICadastrarUsuario } from "../interfaces/ICadastrar";
+import { IBuscarSetor, IBuscarUsuario, IValidarToken } from "../interfaces/IBuscar";
+import { ICadastrarAgendamento, ICadastrarSetor, ICadastrarUsuario } from "../interfaces/ICadastrar";
 
 const api = axios.create({
     baseURL: process.env.REACT_APP_API,
@@ -114,9 +114,31 @@ export const useApi = () => ({
 
     //Setor
     buscarSetores: async () => {
-        const response = await api.get('setor/buscar');
+        const response = await (await api.get('setor/buscar')).data as  IBuscarSetor[];
    
-        return response.data;
+        return response;
     },
+
+    editarSetor: async (setor : ICadastrarSetor) => {
+        try {
+            const response = await api.put('setor/atualizar', setor);
+
+            return response.data;
+        }catch (err: any) {
+                alert(JSON.stringify(err.response.data));
+        }
+    },
+
+    deletarSetor : async (idSetor : number) => {
+        try {
+            const response = await api.delete(`setor/deletar/${idSetor}`);
+
+            alert('setor deletado com sucesso!');
+            return response.data;
+        }
+        catch (err: any) {
+            alert('Ops, algo deu errado, tente de novo!');
+        }
+    }
 
 });

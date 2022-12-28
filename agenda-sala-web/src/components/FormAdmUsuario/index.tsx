@@ -182,9 +182,8 @@ const FormAdmUsuario = () => {
                   }
                   
                 </Inputs>
-                <Buttons>
-                  
-                <ActionButton
+                <Buttons>                
+                  <ActionButton
                     icon={ <FaTimes/> }
                     titulo="cancelar"
                     onClick={limparCampos}
@@ -195,7 +194,6 @@ const FormAdmUsuario = () => {
                     titulo="salvar"
                     onClick={handlerSave}
                   />
-            
                 </Buttons>
                 
             </Form>

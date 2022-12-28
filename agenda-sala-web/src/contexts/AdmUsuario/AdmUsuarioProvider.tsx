@@ -4,7 +4,7 @@ import { IBuscarUsuario } from "../../interfaces/IBuscar";
 import { ICadastrarUsuario } from "../../interfaces/ICadastrar";
 import { AdmUsuarioContext } from "./AdmUsuarioContext"
 
-export const AdmProvider = ({ children }: { children: JSX.Element }) => {
+export const AdmUsuarioProvider = ({ children }: { children: JSX.Element }) => {
     
     const api = useApi();
 
@@ -34,7 +34,6 @@ export const AdmProvider = ({ children }: { children: JSX.Element }) => {
         await api.deletarUsuario(idUsuario);
         buscarUsuarios();
     }
-
 
     return (
         <AdmUsuarioContext.Provider value={

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Body = styled.div`
-    width: 100%;
+    width: 90%;
     height: 70px;
     min-height: 70px;
     
@@ -37,7 +37,7 @@ export const Botoes = styled.div`
     align-items: center;;
 `;
 
-export const Titulo = styled.h4`
+export const Titulo = styled.h3`
     width: 80%;
     height: auto;
 
