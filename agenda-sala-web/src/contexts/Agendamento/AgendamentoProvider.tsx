@@ -29,7 +29,7 @@ export const AgendamentoProvider = ({ children }: { children: JSX.Element }) => 
     }
 
     return (
-        <AgendamentoContext.Provider value={{ agendamentos, criarAgendamento, buscarAgendamentos, deletarAgendamento }}>
+        <AgendamentoContext.Provider value={{ idSala, data, agendamentos, criarAgendamento, buscarAgendamentos, deletarAgendamento }}>
             {children}
         </AgendamentoContext.Provider>
     );

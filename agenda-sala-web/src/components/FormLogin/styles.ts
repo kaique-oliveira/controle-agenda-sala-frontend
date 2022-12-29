@@ -11,7 +11,7 @@ export const Body = styled.div`
 
     background-color: ${({ theme }) => theme.FUNDOCONTAINER};
     border: 1px solid ${({ theme }) => theme.BORDACONTAINER};
-    box-shadow: 0 1px 10px ${({ theme }) => theme.SHADOW};
+    box-shadow: 0 0 2px ${({ theme }) => theme.SHADOW};
 `;
 
 export const Form = styled.form`

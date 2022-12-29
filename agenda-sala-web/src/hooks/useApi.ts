@@ -1,6 +1,6 @@
 import axios from "axios";
 import { IBuscarSetor, IBuscarUsuario, IValidarToken } from "../interfaces/IBuscar";
-import { ICadastrarAgendamento, ICadastrarSetor, ICadastrarUsuario } from "../interfaces/ICadastrar";
+import { ICadastrarAgendamento, ICadastrarSala, ICadastrarSetor, ICadastrarUsuario } from "../interfaces/ICadastrar";
 
 const api = axios.create({
     baseURL: process.env.REACT_APP_API,
@@ -110,6 +110,47 @@ export const useApi = () => ({
             console.log(err.response.data)
         }  
     },
+    buscarPorId: async (idSala : number) => {
+        try {
+            const response = await api.get(`sala/buscar/${idSala}`);
+            return response.data;
+        }
+        catch (err: any) {
+            console.log(err.response.data)
+        }  
+    },
+    cadastrarSala: async (sala : ICadastrarSala) => {
+        try {
+            const response = await api.post('sala/inserir', sala);
+
+            return response.data;
+        }catch (err: any) {
+                alert(JSON.stringify(err.response.data));
+        }
+    },
+
+    editarSala: async (sala : ICadastrarSala) => {
+        try {
+            const response = await api.put('sala/atualizar', sala);
+
+            return response.data;
+        }catch (err: any) {
+                alert(JSON.stringify(err.response.data));
+        }
+    },
+
+    deletarSala : async (idSala : number) => {
+        try {
+            const response = await api.delete(`sala/deletar/${idSala}`);
+
+            alert('sala deletada com sucesso!');
+            return response.data;
+        }
+        catch (err: any) {
+            alert('Ops, algo deu errado, tente de novo!');
+        }
+    },
+
 
 
     //Setor
@@ -117,6 +158,16 @@ export const useApi = () => ({
         const response = await (await api.get('setor/buscar')).data as  IBuscarSetor[];
    
         return response;
+    },
+
+    cadastrarSetor: async (setor : ICadastrarSetor) => {
+        try {
+            const response = await api.post('setor/inserir', setor);
+
+            return response.data;
+        }catch (err: any) {
+                alert(JSON.stringify(err.response.data));
+        }
     },
 
     editarSetor: async (setor : ICadastrarSetor) => {

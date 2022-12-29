@@ -11,7 +11,6 @@ export interface IBuscarUsuario{
     setor: IBuscarSetor; 
 }
 
-
 export interface IBuscarSala{
     id: number;
     nome: string;
@@ -24,6 +23,7 @@ export interface IBuscarSetor{
 
 export interface IBuscarAgendamento {
     id: number;
+    titulo: string;
     data: string;
     horaInicial: string;
     horaFinal: string;

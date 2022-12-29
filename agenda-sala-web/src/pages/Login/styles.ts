@@ -9,5 +9,5 @@ export const Body = styled.main`
     align-items: center;
     flex-direction: column;
 
-    background-color: ${({theme}) => theme.FUNDOTELA};
+    background-color: ${({theme}) => theme.FUNDOINPUT};
 `;

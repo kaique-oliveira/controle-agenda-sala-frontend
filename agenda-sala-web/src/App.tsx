@@ -6,6 +6,7 @@ import { AgendamentoProvider } from './contexts/Agendamento/AgendamentoProvider'
 import Rotas from './routes/Rotas';
 import { AdmUsuarioProvider } from './contexts/AdmUsuario/AdmUsuarioProvider';
 import AdmSetorProvider from './contexts/AdmSetor/AdmSetorProvider';
+import AdmSalaProvider from './contexts/AdmSala/AdmSalaProvider';
 
 
 const App = () => {
@@ -16,9 +17,11 @@ const App = () => {
         <AgendamentoProvider>
           <AdmUsuarioProvider>
             <AdmSetorProvider>
-            <ThemeProvider theme={theme.COLORS}>         
-              <Rotas/>
-            </ThemeProvider>
+              <AdmSalaProvider>
+                <ThemeProvider theme={theme.COLORS}>         
+                  <Rotas/>
+                </ThemeProvider>
+              </AdmSalaProvider>
             </AdmSetorProvider>
           </AdmUsuarioProvider>
         </AgendamentoProvider>

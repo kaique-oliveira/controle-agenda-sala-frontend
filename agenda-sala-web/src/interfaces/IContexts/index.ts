@@ -1,5 +1,5 @@
 import { IBuscarAgendamento, IBuscarSala, IBuscarSetor, IBuscarUsuario } from "../IBuscar";
-import { ICadastrarAgendamento, ICadastrarSetor, ICadastrarUsuario } from "../ICadastrar";
+import { ICadastrarAgendamento, ICadastrarSala, ICadastrarSetor, ICadastrarUsuario } from "../ICadastrar";
 
 
 export interface IAuthContext{
@@ -16,6 +16,8 @@ export interface IRequireAuth{
 }
 
 export interface IAgendamentoContext{
+    idSala: number;
+    data: Date;
     agendamentos: IBuscarAgendamento[];
     criarAgendamento: (agendamento: ICadastrarAgendamento) => Promise<void>;
     buscarAgendamentos: (idSala: number, data: Date) => Promise<void>
@@ -40,4 +42,14 @@ export interface IAdmSetor{
     editarSetor: (setor :  ICadastrarSetor) => Promise<void>;
     deletarSetor: (idSetor: number) => Promise<void>;
     recuperarSetor: (idSetor : number) => Promise<void>;
+}
+
+export interface IAdmSala{
+    salas: IBuscarSala[];
+    salaRecup: ICadastrarSala;
+    setSalaRecup: (sala : ICadastrarSala) => void;
+    buscarSalas: () => Promise<void>;
+    editarSala: (sala:  ICadastrarSala) => Promise<void>;
+    deletarSala: (idSala: number) => Promise<void>;
+    recuperarSala: (idSala : number) => Promise<void>;
 }

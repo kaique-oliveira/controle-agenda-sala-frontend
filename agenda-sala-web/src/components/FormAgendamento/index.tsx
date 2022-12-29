@@ -21,8 +21,9 @@ const FormAgendamento = () => {
   const [focoInicio, setFocoInicio] = useState<boolean>(false);
   const [focoDuracao, setFocoDuracao] = useState<boolean>(false);
 
+  const [idSala, setIdSala] = useState<number>(0);
+  const [titulo, setTitulo] = useState<string>('');
   const [data, setData] = useState<Date>(new Date());
-  const [idSala, setIdSala] = useState<number>();
   const [horaIncio, setHoraInicio] = useState<string>('08');
   const [minutoIncio, setMinutoInicio] = useState<string>('00');
   const [horaDuracao, setHoraDuracao] = useState<string>('00');
@@ -50,9 +51,10 @@ const FormAgendamento = () => {
   //@ts-ignore
   const criarAgendamento = async(e) => {
     e.preventDefault()
-    if (horaIncio && minutoIncio && horaDuracao && minutoDuracao) {
+    if (horaIncio && minutoIncio && horaDuracao && minutoDuracao && titulo) {
 
       const dadosAgendamento: ICadastrarAgendamento = {
+        titulo: titulo,
         dataAgendamento: data.toJSON(),
         horaInicial: (new Date(`${new Date().toDateString()} ${horaIncio}:${minutoIncio}:00`)).toJSON(),
         duracao: (new Date(`${new Date().toDateString()} ${horaDuracao}:${minutoDuracao}:00`)).toJSON(),
@@ -63,7 +65,7 @@ const FormAgendamento = () => {
       await agendamento.criarAgendamento(dadosAgendamento).then(() => buscarAgendamentos());    
     }
     else {
-      alert('Seleciona a hora inicial e a duração corretamente.')
+      alert('Seleciona a hora inicial a duração e um titulo corretamente.')
     }
 
   }
@@ -117,12 +119,12 @@ const FormAgendamento = () => {
         isFocus={focoTitulo}
         onFocus={() => setFocoTitulo(true)}
         onBlur={() => setFocoTitulo(false)}
-        
+        onChange={(t) => setTitulo(t.target.value)}
       >
-        <option value={0}>Selecione um titulo</option>
-        <option value={0}>Conferência</option>
-        <option value={0}>Reunião</option>
-        <option value={0}>Treinamento</option>
+        <option value={''}>Selecione um titulo</option>
+        <option value={'Conferência'}>Conferência</option>
+        <option value={'Reunião'}>Reunião</option>
+        <option value={'Treinamento'}>Treinamento</option>
       </SelectInput>
       
       <SelectInputHora

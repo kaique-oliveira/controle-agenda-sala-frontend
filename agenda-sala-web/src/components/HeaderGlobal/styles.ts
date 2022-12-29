@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Header = styled.header`
-    width: 98vw;
+    width: 98%;
     height: 5%;
 
     padding:0 1%;
@@ -12,7 +12,7 @@ export const Header = styled.header`
 
     background-color: ${({theme}) => theme.FUNDOCONTAINER};
     border: 1px solid ${({theme}) => theme.BORDACONTAINER};
-    box-shadow: 0 0 3px ${({ theme }) => theme.SHADOW};
+    box-shadow: 0 1px 5px ${({ theme }) => theme.SHADOW};
 
     position: fixed;
     top: 0;

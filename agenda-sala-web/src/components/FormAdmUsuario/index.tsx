@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaEnvelope, FaLock, FaNetworkWired, FaSave, FaTimes, FaUserAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useAdmSetor } from "../../hooks/useAdmSetor";
 import { useAdmUsuario } from "../../hooks/useAdmUsuario";
 import { useApi } from "../../hooks/useApi";
 import { useAuth } from "../../hooks/useAuth";
@@ -16,6 +17,7 @@ import { Body, Buttons, Form, Inputs } from "./styles";
 const FormAdmUsuario = () => {
 
   const { usuario } = useAuth();
+  const { setores } = useAdmSetor();
   const api = useApi();
   const admUsuario = useAdmUsuario();
 
@@ -31,12 +33,7 @@ const FormAdmUsuario = () => {
   const [tipo, setTipo] = useState<string>('usuario')
   const [setor, setSetor] = useState<IBuscarSetor>({} as IBuscarSetor);
   const [estadoSetor, setEstadoSetor] = useState(0);
-  const [setores, setSetores] = useState<IBuscarSetor[]>([]);
   var checkbox = document.querySelector('#tipo');
-
-  useEffect(() => {
-    buscarSetores();
-  }, []);
 
   useEffect(() => {
     if (admUsuario.usuarioRecup.id) {
@@ -44,14 +41,6 @@ const FormAdmUsuario = () => {
     }
   }, [admUsuario.usuarioRecup]);
 
-
-  const buscarSetores = async() => {
-    const response = await api.buscarSetores() as IBuscarSetor[]; 
-
-    if(response){
-        setSetores(response);
-    }
-  }
 
   const handlerSave = async () => {
     if(nome && email && senha && setor.nome && setor.id){ 
@@ -93,6 +82,7 @@ const FormAdmUsuario = () => {
       setEmail(admUsuario.usuarioRecup.email);
       setSenha(admUsuario.usuarioRecup.senha);
       setSetor(admUsuario.usuarioRecup.setor);
+      console.log(admUsuario.usuarioRecup.setor)
       setEstadoSetor(admUsuario.usuarioRecup.setor.id);
       
       if (admUsuario.usuarioRecup.tipo == 'admin') {
@@ -163,7 +153,10 @@ const FormAdmUsuario = () => {
                     isFocus={focoSetor}
                     onFocus={() => setFocoSetor(true)}
                     onBlur={() => setFocoSetor(false)}
-                    onChange={(s) => setSetor({id: parseInt(s.target.value), nome: 'nome'})}
+                    onChange={(s) => {
+                      setSetor({id: parseInt(s.target.value), nome: 'nome'}) 
+                      setEstadoSetor(parseInt(s.target.value))}
+                    }
                     value={estadoSetor}  
                   >
                     <option value={0}>Selecione uma sala</option>

@@ -6,7 +6,7 @@ export default {
         FUNDOBOTAO: '#0F0F0F',
         BORDACONTAINER: '#080809',
         FUNDOCONTAINER: '#131313',
-        FUNDOTELA: '#0D0D0E',
+        FUNDOTELA: '#3A3A3A',
         CORDESTAQUE: '#FF431B',
         PLACEHOLDER: '#4F4F4F',
         SHADOW: '#000'

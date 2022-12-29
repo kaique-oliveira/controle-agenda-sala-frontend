@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Body = styled.div`
-    width: 100%;
+    width: 95%;
     height: 70px;
     min-height: 70px;
     
@@ -9,7 +9,7 @@ export const Body = styled.div`
     justify-content: space-evenly;
     align-items: center;
 
-    background-color: ${({ theme }) => theme.FUNDOTELA};
+    background-color: ${({ theme }) => theme.FUNDOBOTAO};
     border: 1px solid ${({theme}) => theme.BORDACONTAINER};
     box-shadow: 0 0 3px ${({ theme }) => theme.SHADOW};
     
@@ -41,7 +41,7 @@ export const Titulo = styled.h4`
     width: 80%;
     height: auto;
 
-    text-align: center;
+    text-align: left;
     color: ${({theme}) => theme.CORDESTAQUE};
 `;
 
@@ -51,6 +51,6 @@ export const Descricao = styled.p`
 
     font-size: 17px;
 
-    text-align: center;
+    text-align: left;
     color: ${({theme}) => theme.TEXT};
 `;

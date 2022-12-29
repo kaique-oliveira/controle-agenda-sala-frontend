@@ -3,7 +3,7 @@ import { FaTrash, FaUserEdit } from 'react-icons/fa'
 import { useAdmSetor } from '../../hooks/useAdmSetor'
 import { ICardSetor } from '../../interfaces/IComponents'
 import NavButton from '../NavButton'
-import { Body, Botoes, Conteudo, Descricao, Titulo } from './styles'
+import { Body, Botoes, Conteudo, Titulo } from './styles'
 
 const CardSetor = ({setor} : ICardSetor) => {
 
@@ -17,25 +17,24 @@ const CardSetor = ({setor} : ICardSetor) => {
     deletarSetor(parseInt(event.currentTarget.id));
   }
 
-
   return (
     <Body>
-    <Conteudo>
-      <Titulo> {`${setor.id} - ${setor.nome}`} </Titulo>
-    </Conteudo>
-    <Botoes>
-      <NavButton
-        id={setor.id.toString()}
-        icon={<FaUserEdit />}
-        onClick={recuperarDadosEditar}
-      />
-      <NavButton
-        id={setor.id.toString()}
-        icon={<FaTrash />}
-        onClick={deletar}
-      />  
-    </Botoes>
-</Body>
+      <Conteudo>
+        <Titulo> {setor.nome} </Titulo>
+      </Conteudo>
+      <Botoes>
+        <NavButton
+          id={setor.id.toString()}
+          icon={<FaUserEdit />}
+          onClick={recuperarDadosEditar}
+        />
+        <NavButton
+          id={setor.id.toString()}
+          icon={<FaTrash />}
+          onClick={deletar}
+        />  
+      </Botoes>
+    </Body>
   )
 }
 

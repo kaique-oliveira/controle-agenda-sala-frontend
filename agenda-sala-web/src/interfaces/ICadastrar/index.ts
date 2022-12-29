@@ -1,5 +1,6 @@
 
 export interface ICadastrarAgendamento {
+    titulo: string;
     dataAgendamento: string;
     horaInicial: string;
     duracao: string;
@@ -20,3 +21,8 @@ export interface ICadastrarSetor{
     id: number;
     nome: string;
 }
+
+export interface ICadastrarSala{
+    id: number;
+    nome: string;
+};

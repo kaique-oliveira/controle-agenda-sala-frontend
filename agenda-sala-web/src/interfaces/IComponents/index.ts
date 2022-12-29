@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, InputHTMLAttributes, SelectHTMLAttributes, ImgHTMLAttributes } from 'react';
-import { IBuscarSetor, IBuscarUsuario } from '../IBuscar';
+import { IBuscarAgendamento, IBuscarSala, IBuscarSetor, IBuscarUsuario } from '../IBuscar';
 
 export interface ITextInput extends InputHTMLAttributes<HTMLInputElement>{
     icon?: JSX.Element;
@@ -32,11 +32,7 @@ export interface ILogoScreen extends ImgHTMLAttributes<HTMLImageElement>{
 };
   
 export interface ICardAgendamento{
-    idAgendamento: number;
-    idUsuario: number;
-    button?: React.ReactNode;
-    titulo: string;
-    descricao: string;
+    agendamento: IBuscarAgendamento;
 };
 
 export interface ICardUsuario{
@@ -45,6 +41,10 @@ export interface ICardUsuario{
 
 export interface ICardSetor{
     setor: IBuscarSetor;
+};
+
+export interface ICardSala{
+    sala: IBuscarSala;
 };
 
 export interface ICheckAdmin extends InputHTMLAttributes<HTMLInputElement>{
