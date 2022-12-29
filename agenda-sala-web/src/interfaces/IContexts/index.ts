@@ -19,9 +19,11 @@ export interface IAgendamentoContext{
     idSala: number;
     data: Date;
     agendamentos: IBuscarAgendamento[];
+    agendamentoRecup: IBuscarAgendamento;
     criarAgendamento: (agendamento: ICadastrarAgendamento) => Promise<void>;
     buscarAgendamentos: (idSala: number, data: Date) => Promise<void>
     deletarAgendamento: (idAgendamento: number) => Promise<void>;
+    recuperarAgendamento: (idAgendamento: number) => Promise<void>;
 }
 
 export interface IAdmUsuario{

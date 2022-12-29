@@ -3,19 +3,15 @@ import styled from "styled-components";
 export const Body = styled.div`
     width: 95%;
     height: 70px;
+    min-height: 70px;
 
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 
-    margin: 1em 0;
-
     background-color: ${({ theme }) => theme.FUNDOBOTAO};
     border: 1px solid ${({theme}) => theme.BORDACONTAINER};
     box-shadow: 0 0 3px ${({theme}) => theme.SHADOW};
-
-    position: relative;
-    overflow-y: hidden;
 `;
 
 export const Conteudo = styled.div`
@@ -25,7 +21,8 @@ export const Conteudo = styled.div`
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
-    align-items: center;;
+    align-items: center;
+
 `;
 
 export const Titulo = styled.h4`
@@ -34,6 +31,7 @@ export const Titulo = styled.h4`
 
     text-align: left;
     color: ${({theme}) => theme.CORDESTAQUE};
+
 `;
 
 export const Descricao = styled.p`
@@ -44,4 +42,14 @@ export const Descricao = styled.p`
 
     text-align: left;
     color: ${({theme}) => theme.TEXT};
+
+`;
+export const Botoes = styled.div`
+    width: 10%;
+    height: 70px;
+
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;;
 `;

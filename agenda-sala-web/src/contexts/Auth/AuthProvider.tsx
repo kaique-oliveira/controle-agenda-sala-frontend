@@ -26,6 +26,8 @@ export const AuthProvider = ({children} : {children : JSX.Element}) => {
                 localStorage.setItem('token', data.token);
             }
 
+            navigate('/home');    
+
         } catch (err : any) {
 
             switch (err.code) {
@@ -50,8 +52,7 @@ export const AuthProvider = ({children} : {children : JSX.Element}) => {
                 setTimeout(() => {
                     setIsLoading(false);
                 }, 500); 
-                
-                navigate('/home');             
+                  
             }
         }
     }

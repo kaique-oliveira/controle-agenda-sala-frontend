@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
+import { FaCalendarTimes } from 'react-icons/fa'
 import CardAgendamento from '../../components/CardAgendamento'
 import FormAgendamento from '../../components/FormAgendamento'
 import HeaderGlobal from '../../components/HeaderGlobal'
 import { useAgendamento } from '../../hooks/useAgendamento'
 import { useApi } from '../../hooks/useApi'
 import { IBuscarSala } from '../../interfaces/IBuscar'
+import theme from '../../themes/theme'
 import { Aside, Body, BodySection, HeaderSection, Section, Titulo } from './styles'
 
 const Home = () => {
@@ -46,7 +48,7 @@ const Home = () => {
                         agendamento={a}
                     />
                     );
-                }) : null
+                }) : <FaCalendarTimes size={50} color={theme.COLORS.FUNDOINPUT}/>
               }
           </BodySection>
           

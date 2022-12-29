@@ -1,13 +1,17 @@
 import { useAgendamento } from "../../hooks/useAgendamento";
-import { Body, Conteudo, Descricao, Titulo } from "./styles"
+import { Body, Botoes, Conteudo, Descricao, Titulo } from "./styles"
 import { ICardAgendamento } from "../../interfaces/IComponents";
 import NavButton from "../NavButton";
-import { FaTrash } from "react-icons/fa";
+import { FaPen, FaTrash } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
 
 const CardAgendamento = ({agendamento }: ICardAgendamento) => {
   const agend = useAgendamento();
   const { usuario } = useAuth();
+
+  const recuperarDadosEditar = (event: React.MouseEvent<HTMLButtonElement>) => {
+    agend.recuperarAgendamento(parseInt(event.currentTarget.id));
+  }
 
   const deletarAgendamento = async(event: React.MouseEvent<HTMLButtonElement>) => {
     await agend.deletarAgendamento(parseInt(event.currentTarget.id));
@@ -35,7 +39,20 @@ const CardAgendamento = ({agendamento }: ICardAgendamento) => {
           </Descricao>
       </Conteudo>
       {usuario && usuario.id == agendamento.usuario.id
-        ? <NavButton id={agendamento.id.toString()} icon={<FaTrash />} onClick={deletarAgendamento} /> 
+        ? 
+        <Botoes>
+          <NavButton 
+            id={agendamento.id.toString()} 
+            icon={<FaPen/>} 
+            // onClick={deletarAgendamento}
+          /> 
+
+          <NavButton 
+            id={agendamento.id.toString()} 
+            icon={<FaTrash />} 
+            onClick={deletarAgendamento}
+          /> 
+        </Botoes>
         : null}
      
     </Body>

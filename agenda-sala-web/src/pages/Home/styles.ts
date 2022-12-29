@@ -9,18 +9,19 @@ export const Body = styled.main`
     align-items: center;
 
     background-color: ${({theme}) => theme.FUNDOTELA};
+    position: absolute;
 `;
 
 export const Section = styled.section`
     width: 60%;
     height: 90%;
 
-    margin-top: 2em;
-
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
+
+    margin-top: 2em;
 
     background-color: ${({theme}) => theme.FUNDOCONTAINER};
     border: 1px solid ${({theme}) => theme.BORDACONTAINER};
@@ -41,9 +42,17 @@ export const HeaderSection = styled.div`
 
 export const BodySection = styled.div`
     width: 95%;
-    height: 90%;
+    height: 85%;
 
-    background-color: ${({theme}) => theme.FUNDOCONTAINER};
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 1em;
+    padding: 2em 0 1em 0;
+    margin-bottom: 1em;
+
 
     overflow-y: auto;
 `;

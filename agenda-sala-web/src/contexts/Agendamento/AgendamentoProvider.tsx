@@ -10,6 +10,7 @@ export const AgendamentoProvider = ({ children }: { children: JSX.Element }) => 
     const [agendamentos, setAgendamentos] = useState<IBuscarAgendamento[]>([]);
     const [idSala, setIdSala] = useState<number>(0);
     const [data, setData] = useState<Date>(new Date());
+    const [agendamentoRecup, setAgendamentoRecup] = useState<IBuscarAgendamento>({} as IBuscarAgendamento);
 
     const criarAgendamento = async(agendamento : ICadastrarAgendamento) => {
         await api.cadastrarAgendamento(agendamento);
@@ -28,8 +29,13 @@ export const AgendamentoProvider = ({ children }: { children: JSX.Element }) => 
         await api.deletarAgendamento(id).then(() => buscarAgendamentos(idSala, data));
     }
 
+    const recuperarAgendamento = async (idAgendamento : number) => {
+        setAgendamentoRecup(agendamentos.find(a => a.id == idAgendamento) as IBuscarAgendamento);
+    }
+
     return (
-        <AgendamentoContext.Provider value={{ idSala, data, agendamentos, criarAgendamento, buscarAgendamentos, deletarAgendamento }}>
+        <AgendamentoContext.Provider 
+        value={{ idSala, data, agendamentos, agendamentoRecup, criarAgendamento, buscarAgendamentos, deletarAgendamento, recuperarAgendamento }}>
             {children}
         </AgendamentoContext.Provider>
     );

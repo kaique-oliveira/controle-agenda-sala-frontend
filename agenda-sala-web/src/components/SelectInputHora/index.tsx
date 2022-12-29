@@ -7,9 +7,13 @@ const SelectInputHora = ({icon, titulo, isFocus, horas, minutos, ...rest} : ISel
       {icon}
       {titulo}
       <ContainerSelect>
-        <Select id='selectHora' {...rest}> {horas.map((h) => <option key={h}>{h < 10 ? '0' + h : h}</option>)} </Select>
+        <Select id='selectHora' {...rest}> 
+          {horas.map((h) => <option key={h}>{h < 10 ? '0' + h : h}</option>)} 
+        </Select>
         :
-        <Select id='selectMinuto' {...rest}> {minutos.map((m) => <option key={m}>{m < 10 ? '0' + m : m}</option>)} </Select>
+        <Select id='selectMinuto' {...rest}> 
+          {minutos.map((m) => <option key={m}>{m < 10 ? '0' + m : m}</option>)} 
+        </Select>
       </ContainerSelect>     
     </Body>
   )
