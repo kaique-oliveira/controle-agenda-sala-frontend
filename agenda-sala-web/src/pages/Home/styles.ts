@@ -5,15 +5,17 @@ export const Body = styled.main`
     height: 100%;
 
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+
+    gap: 0.5em;
 
     background-color: ${({theme}) => theme.FUNDOTELA};
     position: absolute;
 `;
 
 export const Section = styled.section`
-    width: 60%;
+    width: 62%;
     height: 90%;
 
     display: flex;
@@ -41,7 +43,7 @@ export const HeaderSection = styled.div`
 `;
 
 export const BodySection = styled.div`
-    width: 95%;
+    width: 100%;
     height: 85%;
 
     display: flex;

@@ -81,6 +81,16 @@ export const useApi = () => ({
         }
     },
 
+    editarAgendamento: async (agendamento : ICadastrarAgendamento) => {
+        try {
+            const response = await api.put('agendamento/atualizar', agendamento);
+            alert(response.data);
+        }
+        catch (err: any) {
+            alert(err.response.data);
+        }
+    },
+
     buscarAgendamentos: async (idSala: number, data: string) => {
         const response = await api.post('agendamento/buscar', {idSala, data});
 

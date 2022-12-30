@@ -44,7 +44,7 @@ const CardAgendamento = ({agendamento }: ICardAgendamento) => {
           <NavButton 
             id={agendamento.id.toString()} 
             icon={<FaPen/>} 
-            // onClick={deletarAgendamento}
+            onClick={recuperarDadosEditar}
           /> 
 
           <NavButton 

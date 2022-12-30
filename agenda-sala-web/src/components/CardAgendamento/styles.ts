@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const Body = styled.div`
-    width: 95%;
+    width: 97%;
     height: 70px;
     min-height: 70px;
 
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
 
     background-color: ${({ theme }) => theme.FUNDOBOTAO};
@@ -22,7 +22,6 @@ export const Conteudo = styled.div`
     justify-content: space-evenly;
     flex-direction: column;
     align-items: center;
-
 `;
 
 export const Titulo = styled.h4`
@@ -31,7 +30,6 @@ export const Titulo = styled.h4`
 
     text-align: left;
     color: ${({theme}) => theme.CORDESTAQUE};
-
 `;
 
 export const Descricao = styled.p`
@@ -42,14 +40,14 @@ export const Descricao = styled.p`
 
     text-align: left;
     color: ${({theme}) => theme.TEXT};
-
 `;
+
 export const Botoes = styled.div`
-    width: 10%;
+    width: auto;
     height: 70px;
 
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    align-items: center;;
+    align-items: center;
 `;

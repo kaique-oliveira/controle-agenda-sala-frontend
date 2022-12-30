@@ -14,7 +14,7 @@ export const Button = styled.button`
     gap: 0.5em;
 
     border: none;
-    background-color: ${({theme}) => theme.FUNDOCONTAINER};
+    background-color: transparent;
     color: ${({theme}) => theme.TEXT};
     cursor: pointer;
     

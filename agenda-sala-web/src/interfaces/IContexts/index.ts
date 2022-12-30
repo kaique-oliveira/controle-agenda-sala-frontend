@@ -20,7 +20,17 @@ export interface IAgendamentoContext{
     data: Date;
     agendamentos: IBuscarAgendamento[];
     agendamentoRecup: IBuscarAgendamento;
+    horaInicio: string;
+    minutoInicio: string;
+    horaDuracao: string;
+    minutoDuracao: string;
+    setAgendamentoRecup: (agendamento : IBuscarAgendamento) => void;
+    setHoraInicio: (hi : string) => void;
+    setMinutoInicio: (mi : string) => void;
+    setHoraDuracao: (hd : string) => void;
+    setMinutoDuracao: (md : string) => void;
     criarAgendamento: (agendamento: ICadastrarAgendamento) => Promise<void>;
+    editarAgendamento: (agendamento: ICadastrarAgendamento) => Promise<void>;
     buscarAgendamentos: (idSala: number, data: Date) => Promise<void>
     deletarAgendamento: (idAgendamento: number) => Promise<void>;
     recuperarAgendamento: (idAgendamento: number) => Promise<void>;

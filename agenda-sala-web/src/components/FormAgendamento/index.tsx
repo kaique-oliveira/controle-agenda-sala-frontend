@@ -9,6 +9,8 @@ import ActionButton from "../ActionButton";
 import { useAgendamento } from "../../hooks/useAgendamento";
 import { ICadastrarAgendamento } from "../../interfaces/ICadastrar";
 import { useAuth } from "../../hooks/useAuth";
+import SelectInputDuracao from "../SelectInputDuracao";
+import { IBuscarAgendamento } from "../../interfaces/IBuscar";
 
 const FormAgendamento = () => {
 
@@ -20,49 +22,76 @@ const FormAgendamento = () => {
   const [focoTitulo, setFocoTitulo] = useState<boolean>(false);
   const [focoInicio, setFocoInicio] = useState<boolean>(false);
   const [focoDuracao, setFocoDuracao] = useState<boolean>(false);
-
   const [idSala, setIdSala] = useState<number>(0);
   const [titulo, setTitulo] = useState<string>('');
   const [data, setData] = useState<Date>(new Date());
-  const [horaIncio, setHoraInicio] = useState<string>('08');
-  const [minutoIncio, setMinutoInicio] = useState<string>('00');
-  const [horaDuracao, setHoraDuracao] = useState<string>('00');
-  const [minutoDuracao, setMinutoDuracao] = useState<string>();
 
-  const agendamento = useAgendamento();
+  const { 
+    horaInicio, 
+    setHoraInicio,
+    minutoInicio, 
+    setMinutoInicio,
+    horaDuracao, 
+    setHoraDuracao,
+    minutoDuracao,
+    setMinutoDuracao,
+    criarAgendamento, 
+    editarAgendamento,
+    buscarAgendamentos,
+    agendamentoRecup,
+    setAgendamentoRecup} = useAgendamento();
   const horarios = useHorarios();
   const auth = useAuth();
 
   useEffect(() => {
-      setCarregaHoras(horarios.gerarHoras());
-      setCarregaMinutos(horarios.gerarMinutos());
-      setCarregaDuracao(horarios.gerarDuracoes());
+    setCarregaHoras(horarios.gerarHoras());
+    setCarregaMinutos(horarios.gerarMinutos());
+    setCarregaDuracao(horarios.gerarDuracoes());
   }, []);
 
   useEffect(() => {
-    buscarAgendamentos();
-}, [idSala, data]);
+    if(agendamentoRecup.id){
+      recuperarDados();
+    }
+  }, [agendamentoRecup]);
+
+  useEffect(() => {
+    buscar();
+  }, [idSala, data]);
 
 
-  const buscarAgendamentos = async () => {   
-    await agendamento.buscarAgendamentos(idSala!, data);
+  const buscar = async () => {   
+    await buscarAgendamentos(idSala!, data);
   }
 
-  //@ts-ignore
-  const criarAgendamento = async(e) => {
-    e.preventDefault()
-    if (horaIncio && minutoIncio && horaDuracao && minutoDuracao && titulo) {
+
+  const agendar = async() => {
+    
+    if ( idSala && titulo.length > 1 && horaDuracao != '00' ||  idSala && titulo.length > 1 && minutoDuracao != '00') {
 
       const dadosAgendamento: ICadastrarAgendamento = {
+        id: agendamentoRecup.id | 0,
         titulo: titulo,
         dataAgendamento: data.toJSON(),
-        horaInicial: (new Date(`${new Date().toDateString()} ${horaIncio}:${minutoIncio}:00`)).toJSON(),
+        horaInicial: (new Date(`${new Date().toDateString()} ${horaInicio}:${minutoInicio}:00`)).toJSON(),
         duracao: (new Date(`${new Date().toDateString()} ${horaDuracao}:${minutoDuracao}:00`)).toJSON(),
         idSala: idSala!,
         idUsuario: (auth.usuario?.id!)
       }
 
-      await agendamento.criarAgendamento(dadosAgendamento).then(() => buscarAgendamentos());    
+      if(agendamentoRecup.id == 0 || agendamentoRecup.id == null){
+        await criarAgendamento(dadosAgendamento).then(() => {
+          buscar();
+          limparCampos();
+        });  
+      }else{
+        editarAgendamento(dadosAgendamento).then(() => {
+          buscar();
+          limparCampos();
+        });
+      }
+
+      
     }
     else {
       alert('Seleciona a hora inicial a duração e um titulo corretamente.')
@@ -70,32 +99,29 @@ const FormAgendamento = () => {
 
   }
 
-  //@ts-ignore
-  const handleHora = h => {
-    switch (h.target.id) {
-      case 'selectHora':
-        setHoraInicio(h.target.value);
-        break;
-      case 'selectMinuto':
-        setMinutoInicio(h.target.value)
-        break;
-    }
+  const recuperarDados = () => {
+    setTitulo(agendamentoRecup.titulo);
+    setHoraInicio(agendamentoRecup.horaInicial.substring(11, 13));
+    setMinutoInicio(agendamentoRecup.horaInicial.substring(14, 16));
+    setHoraDuracao(agendamentoRecup.duracao.substring(11, 13));
+    setMinutoDuracao(agendamentoRecup.duracao.substring(14, 16));
   }
 
-  //@ts-ignore
-  const handleDuracao = d => {
-    switch (d.target.id) {
-      case 'selectHora':
-        setHoraDuracao(d.target.value);
-        break;
-      case 'selectMinuto':
-        setMinutoDuracao(d.target.value)
-        break;
-    }
+  const limparCampos = () => {
+    setTitulo('');
+    setHoraInicio('08');
+    setMinutoInicio('00');
+    setHoraDuracao('00');
+    setMinutoDuracao('00');
+    setAgendamentoRecup({} as IBuscarAgendamento);
+  }
+
+  const handleForm = (e : any) => {
+    e.preventDefault();
   }
 
   return (
-    <Body>
+    <Body onSubmit={handleForm}>
       <SelectInput
         icon={<FaBuilding/>}
         titulo='salas'
@@ -120,6 +146,7 @@ const FormAgendamento = () => {
         onFocus={() => setFocoTitulo(true)}
         onBlur={() => setFocoTitulo(false)}
         onChange={(t) => setTitulo(t.target.value)}
+        value={titulo}
       >
         <option value={''}>Selecione um titulo</option>
         <option value={'Conferência'}>Conferência</option>
@@ -135,10 +162,9 @@ const FormAgendamento = () => {
         minutos={carregaMinutos}
         onFocus={() => setFocoInicio(true)}
         onBlur={() => setFocoInicio(false)}
-        onChange={handleHora}
       />
 
-      <SelectInputHora
+      <SelectInputDuracao
         icon={<FaHourglassStart />}
         titulo='duração'
         isFocus={focoDuracao}
@@ -146,15 +172,13 @@ const FormAgendamento = () => {
         minutos={carregaMinutos}
         onFocus={() => setFocoDuracao(true)}
         onBlur={() => setFocoDuracao(false)}
-        onChange={handleDuracao}
       />
       
       <ActionButton
         icon={ <FaRegCalendarPlus/> }
         titulo="agendar"
-        onClick={criarAgendamento}
+        onClick={agendar}
       />
-
     </Body>    
   )
 }

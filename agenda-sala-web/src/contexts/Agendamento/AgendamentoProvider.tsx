@@ -10,11 +10,21 @@ export const AgendamentoProvider = ({ children }: { children: JSX.Element }) => 
     const [agendamentos, setAgendamentos] = useState<IBuscarAgendamento[]>([]);
     const [idSala, setIdSala] = useState<number>(0);
     const [data, setData] = useState<Date>(new Date());
+
+    const [horaInicio, setHoraInicio] = useState<string>('08');
+    const [minutoInicio, setMinutoInicio] = useState<string>('00');
+    const [horaDuracao, setHoraDuracao] = useState<string>('00');
+    const [minutoDuracao, setMinutoDuracao] = useState<string>('00');
+
     const [agendamentoRecup, setAgendamentoRecup] = useState<IBuscarAgendamento>({} as IBuscarAgendamento);
 
     const criarAgendamento = async(agendamento : ICadastrarAgendamento) => {
         await api.cadastrarAgendamento(agendamento);
-    }   
+    } 
+    
+    const editarAgendamento = async(agendamento : ICadastrarAgendamento) => {
+        await api.editarAgendamento(agendamento);
+    }
 
     const buscarAgendamentos = async (idSala: number, data: Date) => {
         setIdSala(idSala);
@@ -35,7 +45,26 @@ export const AgendamentoProvider = ({ children }: { children: JSX.Element }) => 
 
     return (
         <AgendamentoContext.Provider 
-        value={{ idSala, data, agendamentos, agendamentoRecup, criarAgendamento, buscarAgendamentos, deletarAgendamento, recuperarAgendamento }}>
+        value={{ 
+            idSala, 
+            data, 
+            agendamentos, 
+            agendamentoRecup,
+            horaInicio,
+            setHoraInicio,
+            minutoInicio,
+            setMinutoInicio,
+            horaDuracao,
+            setHoraDuracao,
+            minutoDuracao,
+            setMinutoDuracao,
+            criarAgendamento, 
+            editarAgendamento,
+            buscarAgendamentos, 
+            deletarAgendamento, 
+            recuperarAgendamento,
+            setAgendamentoRecup
+        }}>
             {children}
         </AgendamentoContext.Provider>
     );

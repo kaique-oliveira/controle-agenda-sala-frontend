@@ -2,9 +2,9 @@ import { useAgendamento } from '../../hooks/useAgendamento'
 import { ISelectInputHora } from '../../interfaces/IComponents'
 import { Body, ContainerSelect, Select } from './styles'
 
-const SelectInputHora = ({icon, titulo, isFocus, horas, minutos, ...rest} : ISelectInputHora) => {
+const SelectInputDuracao = ({icon, titulo, isFocus, horas, minutos, ...rest} : ISelectInputHora) => {
 
-  const {horaInicio, minutoInicio, setHoraInicio, setMinutoInicio} = useAgendamento();
+  const {horaDuracao, minutoDuracao, setHoraDuracao, setMinutoDuracao} = useAgendamento();
 
   return (
     <Body isFocus={isFocus}>
@@ -12,19 +12,19 @@ const SelectInputHora = ({icon, titulo, isFocus, horas, minutos, ...rest} : ISel
       {titulo}
       <ContainerSelect>
         <Select 
-          id='selectHora' 
+          id='selectHoraDuracao' 
           {...rest} 
-          onChange={(hi) => setHoraInicio(hi.target.value)}
-          value={horaInicio}
+          onChange={(hd) => setHoraDuracao(hd.target.value)}
+          value={horaDuracao}
         > 
           {horas.map((h) => <option key={h < 10 ? '0' + h : h}>{h < 10 ? '0' + h : h}</option>)} 
         </Select>
         :
         <Select 
-          id='selectMinuto' 
+          id='selectMinutoDuracao' 
           {...rest}
-          onChange={(mi) => setMinutoInicio(mi.target.value)}
-          value={minutoInicio}
+          onChange={(md) => setMinutoDuracao(md.target.value)}
+          value={minutoDuracao}
         > 
           {minutos.map((m) => <option key={m < 10 ? '0' + m : m}>{m < 10 ? '0' + m : m}</option>)} 
         </Select>
@@ -33,4 +33,4 @@ const SelectInputHora = ({icon, titulo, isFocus, horas, minutos, ...rest} : ISel
   )
 }
 
-export default SelectInputHora
+export default SelectInputDuracao

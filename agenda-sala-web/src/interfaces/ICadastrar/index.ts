@@ -1,5 +1,6 @@
 
 export interface ICadastrarAgendamento {
+    id: number;
     titulo: string;
     dataAgendamento: string;
     horaInicial: string;
