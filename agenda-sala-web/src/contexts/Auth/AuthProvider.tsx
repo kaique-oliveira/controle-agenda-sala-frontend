@@ -48,7 +48,11 @@ export const AuthProvider = ({children} : {children : JSX.Element}) => {
             const response = await api.validarToken(storangeToken);
 
             if (response) {
+                localStorage.setItem('token', response.token);
+                localStorage.setItem('usuario', JSON.stringify(response.usuario));
+
                 setUsuario(response.usuario);
+               
                 await buscarSalas(); 
                 setTimeout(() => {
                     setIsLoading(false);

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FaEnvelope, FaLock, FaNetworkWired, FaSave, FaTimes, FaUserAlt } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 import { useApi } from '../../hooks/useApi'
+import { useAuth } from '../../hooks/useAuth'
 import { IBuscarSetor, IBuscarUsuario } from '../../interfaces/IBuscar'
 import { ICadastrarUsuario } from '../../interfaces/ICadastrar'
 import ActionButton from '../ActionButton'
@@ -11,6 +13,8 @@ import { Body, Buttons, Form, Inputs } from './styles'
 const FormEditarPerfil = () => {
 
     const api = useApi();
+    const {validartoken} = useAuth();
+    const navigate = useNavigate();
 
     const [focoNome, setFocoNome] = useState<boolean>(false);
     const [focoEmail, setFocoEmail] = useState<boolean>(false);
@@ -52,6 +56,12 @@ const FormEditarPerfil = () => {
           }
 
           const response = await api.editarUsuario(dadosUsuario);
+
+          if (response) {
+            alert(response);
+            validartoken();
+            navigate('/home');
+          }
         }     
     }
   
