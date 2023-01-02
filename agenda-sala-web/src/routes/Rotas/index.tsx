@@ -5,6 +5,7 @@ import { useAuth } from '../../hooks/useAuth';
 import Administracao from '../../pages/Administracao';
 import Home from '../../pages/Home';
 import Login from '../../pages/Login';
+import Perfil from '../../pages/Perfil';
 import Usuario from '../../pages/Usuario';
 
 
@@ -23,8 +24,12 @@ const Rotas = () => {
                 //@ts-ignore
                 <RequireAuth> <Administracao/> </RequireAuth>
             } /> 
+             <Route path='/editar/perfil' element={ 
+                //@ts-ignore
+                <RequireAuth> <Perfil/> </RequireAuth>
+            } /> 
             
-                  
+            
        </Routes>
    )
 

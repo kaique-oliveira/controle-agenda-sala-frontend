@@ -24,6 +24,7 @@ export const AuthProvider = ({children} : {children : JSX.Element}) => {
             if (data.usuario && data.token) {
                 setUsuario(data.usuario);
                 localStorage.setItem('token', data.token);
+                localStorage.setItem('usuario', JSON.stringify(data.usuario))
             }
 
             navigate('/home');    
@@ -51,8 +52,7 @@ export const AuthProvider = ({children} : {children : JSX.Element}) => {
                 await buscarSalas(); 
                 setTimeout(() => {
                     setIsLoading(false);
-                }, 500); 
-                  
+                }, 500);    
             }
         }
     }

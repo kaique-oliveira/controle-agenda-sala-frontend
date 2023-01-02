@@ -1,6 +1,6 @@
 import NavButton from '../NavButton'
 import { Header, Nav } from './styles'
-import  { FaCog, FaHome, FaPowerOff } from 'react-icons/fa'
+import  { FaCog, FaHome, FaPowerOff, FaUserEdit } from 'react-icons/fa'
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,7 +27,11 @@ const HeaderGlobal = () => {
             icon={<FaCog />}
             onClick={() => navigate('/administracao')}
           />
-          : null
+          : 
+          <NavButton
+            icon={<FaUserEdit/>}
+            onClick={() => navigate('/editar/perfil')}
+          />  
         }
           <NavButton
             icon={<FaPowerOff/>}

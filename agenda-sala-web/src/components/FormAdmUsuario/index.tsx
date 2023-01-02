@@ -30,7 +30,7 @@ const FormAdmUsuario = () => {
   const [nome, setNome] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [senha, setSenha] = useState<string>('');
-  const [tipo, setTipo] = useState<string>('usuario')
+  const [tipo, setTipo] = useState<string>('usuario');
   const [setor, setSetor] = useState<IBuscarSetor>({} as IBuscarSetor);
   const [estadoSetor, setEstadoSetor] = useState(0);
   var checkbox = document.querySelector('#tipo');
