@@ -18,7 +18,7 @@ export const Body = styled.main`
 `;
 
 export const Section = styled.section`
-    width: 90%;
+    width: 50%;
     height: 500px;
 
     display: flex;

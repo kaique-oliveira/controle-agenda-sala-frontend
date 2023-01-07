@@ -11,3 +11,14 @@ export const Body = styled.form`
 
     background-color: ${({theme}) => theme.FUNDOCONTAINER};
 `;
+
+export const Botoes = styled.div`
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 1em;
+`;

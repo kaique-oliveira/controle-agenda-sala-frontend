@@ -5,6 +5,7 @@ import { ICadastrarAgendamento, ICadastrarSala, ICadastrarSetor, ICadastrarUsuar
 export interface IAuthContext{
     usuario: IBuscarUsuario | null;
     salas: IBuscarSala[];
+    buscarSalas: () => Promise<void>;
     login: (email: string, senha: string) => Promise<void>;
     logout: () => void;
     validartoken: () => Promise<void>;

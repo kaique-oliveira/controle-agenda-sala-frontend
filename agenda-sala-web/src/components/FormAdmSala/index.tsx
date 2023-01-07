@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FaAudioDescription, FaSave, FaTimes } from 'react-icons/fa'
 import { useAdmSala } from '../../hooks/useAdmSala'
 import { useApi } from '../../hooks/useApi'
+import { useAuth } from '../../hooks/useAuth'
 import { ICadastrarSala } from '../../interfaces/ICadastrar'
 import ActionButton from '../ActionButton'
 import TextInput from '../TextInput'
@@ -9,7 +10,8 @@ import { Body, Buttons, Form, Inputs } from './styles'
 
 const FormAdmSala = () => {
 
-    const {salaRecup, setSalaRecup, buscarSalas} = useAdmSala();
+    const { salaRecup, setSalaRecup } = useAdmSala();
+    const { buscarSalas } = useAuth();
     const api = useApi();
 
     const [focoNome, setFocoNome] = useState<boolean>(false);

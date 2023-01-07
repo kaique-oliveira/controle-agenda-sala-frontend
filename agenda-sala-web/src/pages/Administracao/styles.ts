@@ -14,7 +14,6 @@ export const Body = styled.main`
     gap: 2em;
 
     background-color: ${({theme}) => theme.FUNDOTELA};
-    overflow-y: auto;
     position: absolute;
 `;
 

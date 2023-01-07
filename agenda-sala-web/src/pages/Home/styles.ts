@@ -8,7 +8,7 @@ export const Body = styled.main`
     justify-content: center;
     align-items: center;
 
-    gap: 0.5em;
+    gap: 0.8em;
 
     background-color: ${({theme}) => theme.FUNDOTELA};
     position: absolute;
@@ -52,9 +52,8 @@ export const BodySection = styled.div`
     align-items: center;
 
     gap: 1em;
-    padding: 2em 0 1em 0;
+    padding: 6em 0 0 0;
     margin-bottom: 1em;
-
 
     overflow-y: auto;
 `;

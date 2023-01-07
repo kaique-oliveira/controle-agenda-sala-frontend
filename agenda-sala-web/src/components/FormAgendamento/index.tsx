@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { FaBuilding, FaAudioDescription, FaClock, FaHourglassStart, FaRegCalendarPlus } from 'react-icons/fa'
+import { FaBuilding, FaAudioDescription, FaClock, FaHourglassStart, FaRegCalendarPlus, FaTimes } from 'react-icons/fa'
 import Calendario from "../Calendario";
 import SelectInput from "../SelectInput"
 import SelectInputHora from "../SelectInputHora";
-import { Body } from "./styles";
+import { Body, Botoes } from "./styles";
 import { useHorarios } from "../../hooks/useHorarios";
 import ActionButton from "../ActionButton";
 import { useAgendamento } from "../../hooks/useAgendamento";
@@ -64,7 +64,6 @@ const FormAgendamento = () => {
     await buscarAgendamentos(idSala!, data);
   }
 
-
   const agendar = async() => {
     
     if ( idSala && titulo.length > 1 && horaDuracao != '00' ||  idSala && titulo.length > 1 && minutoDuracao != '00') {
@@ -73,8 +72,8 @@ const FormAgendamento = () => {
         id: agendamentoRecup.id | 0,
         titulo: titulo,
         dataAgendamento: data.toJSON(),
-        horaInicial: (new Date(`${new Date().toDateString()} ${horaInicio}:${minutoInicio}:00`)).toJSON(),
-        duracao: (new Date(`${new Date().toDateString()} ${horaDuracao}:${minutoDuracao}:00`)).toJSON(),
+        horaInicial: `2022-01-30T${horaInicio}:${minutoInicio}:00.000Z`,
+        duracao: `2022-01-30T${horaDuracao}:${minutoDuracao}:00.000Z`,
         idSala: idSala!,
         idUsuario: (auth.usuario?.id!)
       }
@@ -90,8 +89,6 @@ const FormAgendamento = () => {
           limparCampos();
         });
       }
-
-      
     }
     else {
       alert('Seleciona a hora inicial a duração e um titulo corretamente.')
@@ -173,12 +170,20 @@ const FormAgendamento = () => {
         onFocus={() => setFocoDuracao(true)}
         onBlur={() => setFocoDuracao(false)}
       />
-      
-      <ActionButton
-        icon={ <FaRegCalendarPlus/> }
-        titulo="agendar"
-        onClick={agendar}
-      />
+
+      <Botoes>
+        <ActionButton
+          icon={ <FaTimes/> }
+          titulo="cancelar"
+          onClick={limparCampos}
+        />
+
+        <ActionButton
+          icon={ <FaRegCalendarPlus/> }
+          titulo="agendar"
+          onClick={agendar}
+        />
+      </Botoes>
     </Body>    
   )
 }

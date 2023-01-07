@@ -38,3 +38,16 @@ export const Inputs = styled.div`
 
     gap:15px;
 `;
+
+export const Botoes = styled.div`
+    width: 95%;
+    height: auto;
+
+    gap: 1em;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: ${({ theme }) => theme.FUNDOCONTAINER};
+`;

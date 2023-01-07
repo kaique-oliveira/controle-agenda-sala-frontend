@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FaEnvelope, FaLock, FaNetworkWired, FaSave, FaUserAlt } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaNetworkWired, FaSave, FaTimes, FaUserAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import imgUsuario from '../../assets/users.svg';
 import { useApi } from '../../hooks/useApi';
@@ -11,7 +11,7 @@ import CheckAdmin from '../CheckAdmin';
 import { Imagem } from '../LogoScreen';
 import SelectInput from '../SelectInput';
 import TextInput from '../TextInput';
-import { Body, Form, Inputs } from './styles'
+import { Body, Botoes, Form, Inputs } from './styles'
 
 const FormCadastroUsuario = () => {
   const { usuario } = useAuth();
@@ -54,8 +54,8 @@ const FormCadastroUsuario = () => {
             senha: senha,
             tipo: tipo,
             setor: setor
-        }
-            
+      }
+      
         const response = await api.cadastrarUsuario(dadosUsuario);
 
         if(response){
@@ -127,11 +127,20 @@ const FormCadastroUsuario = () => {
               }
               
             </Inputs>
-            <ActionButton
-              icon={ <FaSave/> }
-              titulo="salvar"
-              onClick={cadastrarUsuario}
-            />
+            <Botoes>
+              <ActionButton
+                icon={ <FaTimes/> }
+                titulo="cancelar"
+                onClick={() => navigate('/home')}
+          />
+          
+              <ActionButton
+                icon={ <FaSave/> }
+                titulo="salvar"
+                onClick={cadastrarUsuario}
+              />
+            </Botoes>
+            
         </Form>
     </Body>
   )

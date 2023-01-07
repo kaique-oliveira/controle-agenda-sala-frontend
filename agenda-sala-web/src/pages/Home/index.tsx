@@ -15,8 +15,7 @@ const Home = () => {
 
   const [nomeSala, setNomeSala] = useState<string>('');
 
-  useEffect(() => {
-    
+  useEffect(() => {  
     if(idSala != 0){
       buscarNomeSala();
     }
